@@ -93,7 +93,7 @@
 | `INDEX.template.md` | 记录目录（类型标记 [接力]/[完成]/[废弃]，初始化时创建） |
 | `LEGACY_ONBOARDING.md` | 存量项目接入指南（附带文件：轻量登记 + 渐进整理，不进主协议必读流程） |
 | `REVIEWS.template.md` | 技能复盘模板（元管理回路：阻碍→根因→建议→处置，四段一句话；留技能资产层、不进项目工作区） |
-| `BLUEPRINT.md` | 设计蓝图（6 条要点即权威速记；同包内 HTML 为完整设计蓝图） |
+| `BLUEPRINT.md` | 设计蓝图（6 条要点即权威速记；HTML 版为包外补充文档，本包纯 MD 不携带） |
 | `archives\README.md` | 归档说明（只进不出，防误删） |
 | `tools\` | 可选工具区（checks/visualize/schedule/report），按需新增守三铁律 |
 

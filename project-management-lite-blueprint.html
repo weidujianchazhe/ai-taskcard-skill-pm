@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en" data-page-node-id="xgqPqVDQBZQxPHUnkmC9zL">
+<head data-page-node-id="3HGoGACp05rGgSgm1JRzRW">
+<meta charset="UTF-8" data-page-node-id="4Xukmug6rMFXpGJguWHGrf">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" data-page-node-id="9qyXQduuTmu7YdcrPqn97T">
+<title>Project Management Lite Work Assignment · Skill Design Blueprint</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'PingFang SC', 'Microsoft YaHei', 'Segoe UI', Arial, sans-serif; background: #F4F3EE; color: #1A1B1C; line-height: 1.7; padding: 32px 16px; }
+  .page { max-width: 980px; margin: 0 auto; }
+  .hero { background: linear-gradient(135deg, rgba(163,213,232,0.35), rgba(158,172,234,0.25)); border-radius: 16px; padding: 28px 32px; margin-bottom: 24px; }
+  .hero h1 { font-size: 26px; font-weight: 700; }
+  .hero p { font-size: 14px; color: #4B5563; margin-top: 8px; }
+  .badge { display: inline-block; font-size: 12px; padding: 2px 10px; border-radius: 20px; margin: 4px 6px 0 0; }
+  .b-green { background: rgba(58,154,26,0.12); color: #2F7D12; border: 1px solid #3A9A1A; }
+  .b-orange { background: rgba(178,106,0,0.1); color: #8A5200; border: 1px solid #B26A00; }
+  .b-blue { background: rgba(63,114,222,0.1); color: #2B5BC9; border: 1px solid #5B7FDE; }
+  .section { background: #FFFFFF; border: 1px solid #E4E3DD; border-radius: 14px; padding: 22px 26px; margin-bottom: 18px; }
+  .section h2 { font-size: 18px; font-weight: 700; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid #E4E3DD; }
+  .section h3 { font-size: 15px; font-weight: 600; margin: 14px 0 6px; }
+  .section p, .section li { font-size: 13.5px; color: #1A1B1C; }
+  .section .muted { color: #6B7280; font-size: 12.5px; }
+  pre { background: #F7F6F2; border: 1px solid #E4E3DD; border-radius: 10px; padding: 14px 16px; font-size: 12.5px; font-family: Consolas, 'Courier New', monospace; overflow-x: auto; margin: 8px 0; line-height: 1.6; }
+  table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 13px; }
+  th, td { border: 1px solid #E4E3DD; padding: 8px 10px; text-align: left; vertical-align: top; }
+  th { background: #F1F0EB; font-weight: 600; }
+  .grid { display: flex; flex-wrap: wrap; gap: 12px; }
+  .grid > div { flex: 1 1 220px; min-width: 0; }
+  .card { background: #FBFBF9; border: 1px solid #E4E3DD; border-radius: 12px; padding: 14px 16px; }
+  .card .num { font-size: 22px; font-weight: 700; color: #9EACEA; }
+  .ok { background: #F0F9F0; border: 1px solid #9ED69E; border-radius: 10px; padding: 10px 14px; font-size: 13px; margin: 8px 0; }
+  .foot { text-align: center; font-size: 12px; color: #6B7280; margin-top: 20px; }
+</style>
+</head>
+<body data-page-node-id="Qqd0anfCOPVhPMp766hK2G">
+<div class="page" data-page-node-id="yZ7uqFLweuYkyNFkcOrVne">
+
+  <div class="hero" data-page-node-id="CYFGCdaJ4rlqFUEkc22CHS">
+    <h1 data-page-node-id="I6EFkXsCe1noMzEOobHSM1">Project Management Lite Work Assignment · Skill Design Blueprint</h1>
+    <p data-page-node-id="tgGydDIj594NGCEJj8wAtZ">Generic "cross-barrier" project-management skill: multi-AI / cross-platform / cross-time / cross-project · task-card-driven (precise arrival, no guessing) · read on demand (however large the project, a task reads only what it needs) · human-read zone + AI zone (human-read summary + AI working coordinates)</p>
+    <p style="margin-top:6px;font-size:12.5px;color:#6B7280;" data-page-node-id="3t9LOSiW5h78sH9x71lF4C">Author: 如天之星 · License: MIT · Version v1.0.1 (in sync with the skill package)</p>
+    <div style="margin-top:10px;" data-page-node-id="SsL7C3lFvd072dbiYEofzv">
+      <span class="badge b-blue" data-page-node-id="FUWpaouTxf21UHeCPOTatu">Division of labor by module/branch · task-card-driven · overwrite-style update · human-read zone + AI zone</span>
+    </div>
+  </div>
+
+  <div class="section" data-page-node-id="pnEYPZrCeCFHdTiHGjqqAd">
+    <h2 data-page-node-id="bYDEltxYZIy6nflfsQwO8U">1. Positioning and Goals</h2>
+    <p data-page-node-id="o8UAEZAXAVxqyUlTIkTdDo"><b data-page-node-id="6g75sPftLGgTNmRJuvuKiG">Positioning</b>: a generic project-management skill, not serving any specific project. Before any project starts, the AI reads this skill first, to initialize the collaborative workspace, follow the read/write handoff protocol, and continuously improve project management itself.</p>
+    <p style="margin-top:8px;" data-page-node-id="JjwnAguRNwndIQ1LUb2g8c"><b data-page-node-id="veBGASEPdWO7Fa712HEpMX">Essential goal (cross-barrier)</b>: cross the barriers of platform, AI, time and project, so that the AI taking over understands work requirements at a lower reading cost and makes fewer errors.</p>
+    <p style="margin-top:8px;" data-page-node-id="bbto5z4OQ8oXQ39vLqltW0"><b data-page-node-id="XUd76V7HlbA4MYWFI0TLmC">Core philosophy (read on demand)</b>: the project as a whole may be complex and heavy, but when the AI actually does the work it reads on demand only the part of the files relevant to the task —<b data-page-node-id="mliD7naSmPg0GUVpqkWVEc">the burden does not grow with project size</b>.</p>
+    <p style="margin-top:8px;" data-page-node-id="YUuQuOMPqtiaTfQHmrSFmy"><b data-page-node-id="2CxoEcbIJ7tp4rr984n2H2">Mode of work (division by module/branch)</b>: trunk + branches + handoff within a branch — stable structure, feasible in parallel, continuous handoff.</p>
+    <p style="margin-top:8px;" data-page-node-id="s6A8BK2ZftQp419hlYNzzu"><b data-page-node-id="aRM0oGzB35YA32gM5F5qym">Human-read zone + AI zone</b>: every key file is divided into a "human-read summary zone" (the manager/executor/checker knows at a glance) + an "AI working-coordinate zone" (the taking-over AI works directly from it); the human-read zone is auto-generated from the AI zone and rewritten in sync, not aligned by subjective judgement.</p>
+    <p style="margin-top:8px;" data-page-node-id="JoXwZAQK3GnzqnB6QmS48p"><b data-page-node-id="Zf8iUDf9yrEFBGaTA0EK0B">Skill-size principle</b>: add only what "existing mechanisms cannot cover"; anything platform-native, already covered by the existing protocol, or assumed to be needed only in the future is never implemented in the package (it may be registered as a protocol).</p>
+  </div>
+
+  <div class="section" data-page-node-id="CmL21OTyBJRM7unnIxO2WW">
+    <h2 data-page-node-id="yhVpwtaBvK1HqCN0iR9peH">2. Target Structure (physical separation · naming is function)</h2>
+    <p class="muted" data-page-node-id="AAAqdFGLlippqhp4eBX3mi">The skill source package (external) and the project workspace layer (internal) are physically separated — **the management directory is created outside the code path** (not mixed into the source tree, not packaged); the project workspace is an instantiated copy of the skill (including protocol files); project source code is never written into the management directory.</p>
+    <pre data-page-node-id="knAXUBMqjm7wuppjHV5DRh">
+# Skill source package (outside · standalone directory · generic)
+project-management-lite\
+├── SKILL.md                    # skill entry: trigger timing / usage flow / initialization checklist / management self-check
+├── README.md                   # template guide: positioning / initialization / takeover flow / core rules / template list
+├── BLUEPRINT.md                # design blueprint (authoritative 6-point quick reference; HTML is an optional supplement; does not participate in version sync)
+├── REVIEWS.template.md         # skill review template (meta-management loop): instantiated at initialization as the workspace REVIEWS.md
+├── LEGACY_ONBOARDING.md        # legacy project onboarding (attached): lightweight registration + progressive tidying, not in the main protocol's mandatory-reading flow
+├── MAP.template.md             # project map: environment / rules / protocol / path registry
+├── STATE.template.md           # current position: human-read zone (3 lines) + AI zone, overwrite style
+├── INDEX.template.md           # record index: type markers [handoff]/[done]/[dropped]
+├── tasks\TASK_CARD.template.md # task card: human-read locator zone (3 lines) + AI field zone (including the progress anchor — overwrite at each landing point, the breakpoint-resume anchor, cleared to "—" after end-of-work distillation); one file per card, named after the work; the card tail carries an end-of-work protocol quick reference (four-piece set / MAP registration / archive red line distributed with the card, visible on takeover)
+├── reports\HANDOVER.template.md # minimal handoff: 6 blocks + block 7 "Task card update"
+├── archives\                   # archive (in only, never out)
+└── tools\                      # optional tool zone (pulled on demand, not on the takeover path)
+    ├── README.md               # overview + three iron rules
+    ├── checks\                 # check protocol (mainly human-triggered; the AI periodic-audit switch is off by default)
+    ├── visualize\              # visualization specification (platform-independent)
+    ├── schedule\               # scheduled-task specification (reminders / periodic checks / regular reporting)
+    ├── report\                 # report generation specification (daily/weekly report data extraction)
+    └── custom\                 # custom tools (guide to generating local scripts, single-platform implementation, not in the skill package)
+
+# project workspace layer (inside · one per project · managed)
+{WORKSPACE_ROOT}\&lt;project-name&gt;\      # workspace root {WORKSPACE_ROOT} is confirmed once with the user at initialization (default or custom)
+├── SKILL.md            # protocol entry (copied verbatim from the skill source package at initialization — the authoritative-source copy)
+├── MAP.md              # project map: environment/rules/protocol/path registry (low frequency, written only on new structure)
+├── STATE.md            # current state (human-read zone 3 lines + AI zone, overwrite style)
+├── REVIEWS.md          # meta-management records (skill review/recovery registration; not into reports\ or INDEX)
+├── tasks\              # task cards (one file per card: human-read locator zone + AI field zone with progress anchor, named after the work)
+├── reports\            # handoffs/summaries (append style, named by date)
+├── INDEX.md            # index (table: ID/date/type/topic/AI/handoff, type markers)
+├── archives\           # archive (in only, never out)
+│   └── done\           # completed-card archive (moved in on completion, keeping the completion record)
+├── tools\              # optional tool zone (pulled on demand, not on the takeover path)
+└── docs\ and other project files    # project-owned files (read only when task-relevant)</pre>
+    <p class="muted" data-page-node-id="Q6OrUOtoFfceWHgsxRKIKm">Naming is function: MAP establishes structure → tasks\ locates → reports\ connects → STATE/INDEX on demand. Directory and fixed file names are in English (cross-platform compatible), content in Chinese; task cards are named after the work, in Chinese or English (defaults to the language the user communicates in).</p>
+  </div>
+
+  <div class="section" data-page-node-id="DMHwOK2qDtL1HPmuB8G4Dj">
+    <h2 data-page-node-id="el1HID3GTaYp3wDiLRVov8">3. Design Highlights (six modules + attached file)</h2>
+
+    <h3 data-page-node-id="WDjVJB3d912N35Saj2svKe">Module 1 · Skill entry layer</h3>
+    <ul data-page-node-id="Sj56AiFX0leBbA6ynVySAq">
+      <li data-page-node-id="JFHFjhAF2CXDCrU3uCVy3R"><b data-page-node-id="XGgCINLTW9OXeHUn8MkpNt">SKILL.md</b>: positioning statement, trigger timing (before a new project starts / before taking over a long-idle project / onboarding a legacy project), usage flow, management self-check list.</li>
+      <li data-page-node-id="MomALb2YhvU8hAWyFWJqn8"><b data-page-node-id="cPNO82bO4LE6Wph3gXMrNN">Initialization checklist</b>: confirm the workspace root → create the management directory → replace MAP placeholders → register the first card → handoff template ready.</li>
+    </ul>
+
+    <h3 data-page-node-id="SkHngnrGbpnMGKDVL9VhHH">Module 2 · Parameter configuration layer</h3>
+    <ul data-page-node-id="FD7sylbOCYa6F4P2Q2QbIL">
+      <li data-page-node-id="pDdfZkTHbbFPYGkUSs77u2"><b data-page-node-id="ZRoCJf89ADIah9b2KqCGnq">{WORKSPACE_ROOT}</b>: confirmed once by the user at initialization (default or custom); the management directory's subfolders are created automatically by the skill.</li>
+      <li data-page-node-id="rkbZMrxG5OnNBvotIhoG6s"><b data-page-node-id="a46WFLc1OXRaV97QiX7AZd">{PLATFORM}</b> (win/mac/linux), <b data-page-node-id="wRO6EzIqpNyUcbYD77KJ1y">{SHELL}</b> (powershell/bash).</li>
+      <li data-page-node-id="FzQ1owGJUegkICYJ3DgGb1"><b data-page-node-id="PBMoUiFEsCcXe5f0VvQwvg">The code path is provided by the user</b> (code directory); the management directory is uniformly under {WORKSPACE_ROOT}\&lt;project-name&gt;\ (physically separated, not mixed into the source tree).</li>
+      <li data-page-node-id="5E2r8Bcukouj4VHXIC5RwO"><b data-page-node-id="QjjoJdg0lTzd3pJVQtURqT">The MAP environment section's "[SKILL_SOURCE_PATH]" placeholder</b>: registers the skill source package location at initialization (fill in "—" if not registered); version-drift detection and Recovery point 4 take it as input. The same section also has two placeholders: "[BACKUP_METHOD]" (git / periodic copy / none — disaster-recovery fallback registration for the source package) and "[DECISION_MAKER]" (the final decider for cross-branch conflicts, REVIEWS handling and meta-event escalation).</li>
+      <li data-page-node-id="vFIXcTGQAwWzMdBorSYJDX">Dual-platform command examples + placeholder conventions: <code data-page-node-id="S4vABlcXFOQ9AS2RBo8mjE">{}</code> = runtime variables (evaluated by the AI / confirmed by the user), <code data-page-node-id="izdmmHJFfOUhdlspGyfqxb">[]</code> = project information (filled in by a human).</li>
+    </ul>
+
+    <h3 data-page-node-id="3I4GzvbG2bclAQCJPatcR6">Module 3 · Collaboration protocol layer</h3>
+    <ul data-page-node-id="iqkFdsVoOARgNDoj1qYPPO">
+      <li data-page-node-id="G6iFb2XPteiuz9bPQaOmXB"><b data-page-node-id="J1Vdgg30FXEygPUdOXvz8H">Task-card-driven takeover</b>: tasks\ is the first entry point (task card = Description + Key points + Code root path + Files involved + Last handoff + Distilled) → if sufficient, start work directly; if not, follow the anchor and read reports\ → if still unclear, ask the user.</li>
+      <li data-page-node-id="EDzD0IMwDdvNOqrooyNWT1"><b data-page-node-id="ZTUdbUC4SIfDNrLF84khls">MAP slimming mechanism</b>: four fixed sections (environment/rules/protocol/path registry), written only when a path or structure is added, never records progress.</li>
+      <li data-page-node-id="3DRi10fVrcvWxsk87QLLh4"><b data-page-node-id="Aq1ClQ3MHsb4YPtTdhMB8c">STATE boundary</b>: mandatory reading for first takeover / cross-module / overall review; daily assigned tasks need not go through it (it assists review judgement).</li>
+      <li data-page-node-id="B14RQjEI6OnRTo5xtWEkWn"><b data-page-node-id="Y3KsZyclnlg6v3U3mvtW0P">End-of-work routing</b>: unfinished → a card must be created (including work not yet carded, existing only in the current conversation); has a next step → full handoff (6 blocks + block 7) → overwrite-style update of the original task card; no next step → simplified summary + move the card to archives\done\ (do not delete the card, keep the completion record); after the four-piece set lands on disk, check item by item (handoff/card/INDEX/STATE — STATE is an<b data-page-node-id="U3wnf8d7bd4SmZeZwO9pTf">entry-level write</b>: read the latest before writing, update only your own task entry + the human-read zone, whole-file blind overwrite forbidden, so parallel end-of-work does not conflict).</li>
+      <li data-page-node-id="423vmUceXRNUJsrToGqUbt"><b data-page-node-id="UIPF9TVPsIoJ67lvrDvK5n">Task-card overwrite-style update</b>: update = overwrite fields (ID / Status / Description / Key points / Code root path / Files involved / Claimed by / Progress anchor / Last handoff / Distilled), no appending, no snowballing; the evolution trail belongs to reports\ + INDEX.</li>
+      <li data-page-node-id="Ck5LxOVniWGfjFxiHEs2y2"><b data-page-node-id="BamEe3mzjHFdiCTKkruw1o">Task-card key-points field</b>: 1-3 complete executable actions for the current task (what to do + which file, overwrite-style keeping the latest), serving the taking-over AI to work directly.</li>
+      <li data-page-node-id="nwH1zt4bZPwGDaA6nrIFqd"><b data-page-node-id="1zRqhYJM5ANwm9HxbpUdrE">Task-card quality bar</b>: Key points = executable actions (what to do + which file, no empty talk); Files involved = concrete file paths (no "related files"); Code root path = absolute path (cold start locates by it, no need to read MAP first); Last handoff = fill "—" only when there is no handoff; Distilled = the increments from reports already read have been written back into Key points.</li>
+      <li data-page-node-id="zCxecWtZFUUM5GqnAWFFFR"><b data-page-node-id="5T8YCC9HQB5ztMn9HpecUc">Last handoff (chain entry, one or more allowed)</b>: one or more (trunk/each branch); when the full chain is needed, trace reports\ entry by entry along the anchor; no history is kept inside the card.</li>
+      <li data-page-node-id="seVmnSizanAwAE3mfW2i5Z"><b data-page-node-id="UAS5yAxAKaGF6EJs1Nkspv">Distill back to card</b>: after reading reports\, distill the increment back onto the card → each reports entry is read at most once → the takeover burden converges to "task card ± one reports entry".</li>
+      <li data-page-node-id="t16vFwlAoo4Vr0Nwvf99MG"><b data-page-node-id="OOR3zvtDxI5Rbb8o1nxokC">Session = the scene, task card = persistence</b>: writing the card at end of work is a mandatory distillation loop, preventing information from vanishing with the session; no double-write of session/card sync.</li>
+      <li data-page-node-id="Z1pYT6VNN6OtJRBC8ukdLw"><b data-page-node-id="WVQFqmVkS4WSRb4vSpeNRJ">Task-card lifecycle</b>: one read, one write (takeover reads but does not write; the card is written only at the two moments "new task" and "end-of-work update") + move the card to archives\done\ on completion.</li>
+      <li data-page-node-id="fTJ8Rq2e8St7ZT53lqW98j"><b data-page-node-id="51Hw2jfGxzKPENymiFEsz0">Two sources of task cards</b>: handoff-driven (auto-produced by block 7) + dispatch-driven (the manager copies the template to create a card after review).</li>
+      <li data-page-node-id="YNqK6gbiQH2Wd38sUASMOE"><b data-page-node-id="8CCYTZMr5hgJcJsvAfabLh">Task card as the single form</b>: all unfinished work is carded and written to disk (named after the work under tasks\), takeover reads a single card and the path is given directly; move the card to archives\done\ on completion.</li>
+      <li data-page-node-id="KJG1vA4ltPD8RBUfHKtLZD"><b data-page-node-id="GrPFq9D1Kkjyj55uHXRbCo">INDEX type markers</b>: [handoff]/[done]/[dropped] — takeover follows the [handoff] chain; done/dropped do not pollute the current judgement; dropped entries leave a trace (one line of topic + reason) to prevent mistaken work in future.</li>
+      <li data-page-node-id="9nOHlprWxoEiLGfSDxCgej"><b data-page-node-id="ygqZhKyGijonXNxB3nylRZ">Lightweight bloat control</b>: guard only the MAP slimming out-link + keep only active cards in tasks\; the rest is absorbed by read-on-demand.</li>
+      <li data-page-node-id="MLOxZA1R1FeRfxLmkG6dNe"><b data-page-node-id="dSAOqk3j2dPOLmb7VvWwzY">Unified naming</b>: MAP / STATE / tasks / reports / INDEX — the name is the function.</li>
+      <li data-page-node-id="NrVji2QAa90mTN6RDAFAHn"><b data-page-node-id="h8mJhsWeobfmpkFWO0Mn78">Concurrent-write rules</b>: read-before-write (read the latest before overwrite-writing STATE/task cards or append-writing INDEX) · verify-after-write (read back after writing to confirm it landed) · STATE entry-level write (parallel end-of-work each updates its own entry, whole-file blind overwrite forbidden) · conflict adjudication (different fields merge; for the same field, within the same branch only, the larger ID number overwrites the smaller; <b data-page-node-id="CF2zTGHN6IVzCiq1IXho5U">cross-branch conflicts are not adjudicated by timestamp</b> — cross-platform clocks are untrustworthy; both sides leave a trace in reports and hand it to the manager; increasing IDs + non-regressing timestamps are normal, reversed order makes the timestamp suspect) · <b data-page-node-id="2die22ADjYS54OV0oOhDDB">collision retry</b> (verify-after-write finds the same ID → the later writer rewrites this line with +1 and leaves a trace).</li>
+      <li data-page-node-id="IojjXaGTiCjcq87g0vLWPL"><b data-page-node-id="LHUs7uiXdNIPFCawX4ffYh">Gap filling</b>: the skill source package is the authoritative source — if a project workspace skill file is missing or outdated (the source package version is higher) → copy the template from the source package and refill the instance (the source package path is registered in the MAP environment section "[SKILL_SOURCE_PATH]"); if a data file (task card/reports) is lost, recover it from INDEX/reports, and if INDEX is lost too → mark "data pending", do not fabricate; any recovery action also records one line of the obstacle in REVIEWS.md (meta-event collection, not into reports\).</li>
+      <li data-page-node-id="XNLa3x5fUxdGraBOJjTsvU"><b>Archive red line</b>: deleting/moving any file under reports\ and archives\ is forbidden — the only exception = the end-of-work archiving flow (rolling archive past the threshold, moving completed cards); after moving, the corresponding INDEX row's pointer must be updated in sync; <b>change records in three layers</b>: MAP records structure (new paths/new branches, with Checkpoint 4 as the backstop for branch registration), reports records summaries (when the project has git, each "Changes" item carries a commit hash — a precise traceability anchor; when the full diff is needed, git show gives it), INDEX records pointer rows (double-write never loses).</li>
+      <li><b>Change-protection zone (SKILL.md Section 8)</b>: a hard gate for skill-package update/slimming/simplification/merging/field renaming — zero feature loss (only duplicate copies are reduced, never the single authoritative original) · cross-impact check (first check the references of checkpoints/recovery points/templates to the changed content; for a rename, first list the whole-package sync checklist; if a local simplification breaks the interplay with the check/recovery/handoff functions, do not do it at all) · takeover cost does not rise (files on the takeover path may only get thinner, never net-grow) · <b>three cost-attribution principles</b> (write path constant: end-of-work fields must be mechanically derivable, full-inventory-style fields forbidden; snapshot vs ledger division of labor: cumulative statistics belong to the INDEX archive and are queried on demand, cost may only move from high frequency → low frequency, never the reverse; main-file capacity is a hard cap: the INDEX main file's row count N is a reading-cost capping device, not expandable capacity — no adding rows on the grounds of being "more complete", and layered reads must not be merged) · load-bearing structures preserved (pointer chain / INDEX double-write / distill back to card / audit-dependency field list) · <b>interlocking-chain warning</b> (a protocol that looks like a few lines is often a multi-function junction node — before changing it, run the "six questions" self-check: who consumes it / is there an equivalent path / does the cost rise; prefer smaller over broken) · <b>conflict means a popup</b> (when the AI finds a change conflicting with the gate it must proactively alert the user and must not execute without confirmation, neither silently obeying nor silently letting it through) · <b>reconciliation mindset</b> (the document layer does no real-time supervision — supervision belongs to the script layer, and the document layer achieves "every action leaves a trace afterwards, multiple ledgers cross-verify, breaking the rules necessarily leaves a trace"; adjudication rules must not leave profit in forgery — the old "later timestamp wins" was a cheating-reward loophole and has been changed to corroboration only + manager adjudication; four reconciliation anchors of time/ID/identity/credential — the ID rule XXNNNN is the logical basis of Checkpoint 4 and the reconciliation interface, not a formatting preference, and any change must pass the cross-impact check).</li>
+      <li>reports date scheme <code data-page-node-id="ssymN34W4YLSqfCci4ivLq">YYYY-MM-DD_TOPIC_AI_TAG.md</code>, AI tag <code data-page-node-id="Fi8tWQpYHQyfSyBAGDe1pC">{PLATFORM}-{AI_NAME}-{SHORT_CODE}</code> (short code of 2-4 random characters, so multiple instances on the same platform do not collide).</li>
+    </ul>
+
+    <h3 data-page-node-id="w8CLLPB3JeS7y78KKE6HrL">Module 4 · Human-read zone + AI zone (human read + AI read)</h3>
+    <ul data-page-node-id="Au30BA8PTXqqeYcHnsKnR8">
+      <li data-page-node-id="r2iR7rrnFumytCSkzvWFMY"><b data-page-node-id="DcABAirVdvKVpGg45NswAf">One file, a unified human-read zone + AI zone pattern</b>: human-read summary zone (3 fixed lines, serving the manager/executor/checker) + AI working-coordinate zone (serving the taking-over AI); the human-read zone is auto-generated from the AI zone (task ← first sentence of Description, status ← Status field, next step ← Key point 1, task distribution ← counts), rewritten in sync on overwrite updates, not aligned by subjective judgement (prevents forking).</li>
+      <li data-page-node-id="6iTOa98ZGWCbtE86zXEXmR"><b data-page-node-id="AmObCDpUEzBs7QX3Evgunq">Task-card human-read locator zone</b>: project · module / task · stage / status · next step (3 fixed lines, overwrite style).</li>
+      <li data-page-node-id="d5OQBRulEBaj1fBg0ZZhLU"><b data-page-node-id="IyxlHNZYwBXq1SPVJUYDuh">STATE top human-read zone</b>: project positioning / task distribution / directory guide (3 lines, overwrite style).</li>
+      <li data-page-node-id="HFXtrQbhTgQbsEbd8iFArt"><b data-page-node-id="8VxgBOSB5RHd8XRlw1g5pN">The directory name is the category</b>: current layer (STATE · tasks) / archive layer (reports) / index (INDEX); a human opening the directory knows which is which.</li>
+      <li data-page-node-id="OlBnAM5NpImeHkeOINKREU"><b data-page-node-id="tVtlZ2yJgv0alxvwnbkD43">The INDEX table = the human-read index</b>: date/type/topic/AI/handoff; a human sees the whole picture at a glance.</li>
+    </ul>
+
+    <h3 data-page-node-id="WixosyhQr2rfxzhwgv0WTB">Module 5 · Optional tool zone (tools\, pulled on demand, not on the takeover path)</h3>
+    <ul data-page-node-id="sJ6GRmc4399o6kmKCDcroJ">
+      <li data-page-node-id="NSLzfvFg1DhmbcpWx2mn78"><b data-page-node-id="ESRaC5rarqULi2dqtmfjTR">tools\README.md</b>: registers built-in tools + anti-runaway rules (three iron rules: pull on demand / not on the takeover path / hold specifications only, not platform implementations).</li>
+      <li data-page-node-id="RJAuauFvMnuPNLgiSTqw6S"><b data-page-node-id="aH3jmla1vwGuCU8YUKM3Zc">checks\</b>: the three moments (before work starts / during operation / after a long time) are optional moments — triggered on demand when the project manager needs them, not mandatory, not AI-automatic; the AI periodic-audit switch is off by default and can be turned on or off; the AI taking over work performs no checks and reads only the files it needs. checklist_record + checklist_project; a three-state handling loop. If a discipline problem recurs on a certain platform, a local check script can be added for that platform (single-platform implementation, not in the skill package).</li>
+      <li data-page-node-id="m5ZHkAKnoT5TtinK6gYLMx"><b data-page-node-id="8dci6xMwf6ELQSA4s8Vlg9">visualize\</b>: platform-independent specification; execution principles — analyze as far as possible · stop at the right point · resource restraint · complete information is the bottom line (no capability tiers; each AI analyzes to the maximum of its own ability while controlling token/compute usage).</li>
+      <li data-page-node-id="WN4T4373KPMxu5BC8X6CF9"><b data-page-node-id="Xr7hr3uMwMjPW27BEMuBiY">schedule\</b>: scheduled reminders / periodic checks / regular reporting; interlocked with the checks\ switch; implemented via each platform's scheduling capability.</li>
+      <li data-page-node-id="y5XvB5Ml3FaHVUtlcqcJWr"><b data-page-node-id="A8tBu6oUqY9LkOyKZBz0oG">report\</b>: daily/weekly report data extraction (INDEX/STATE/reports), format, frequency.</li>
+      <li data-page-node-id="Dr418WoMcxK7URkJguq6nR"><b data-page-node-id="CkS3XWszHK26Fp896e3C9x">custom\ (script generation spec)</b>: when an AI on a certain platform repeatedly has problems or deterministic auditing/self-healing is needed, the AI reads this directory's specs (SCRIPT_SPEC + SPEC_protocol_audit + SPEC_recovery) and generates a lightweight single-platform script according to the platform and host performance (not in the skill package). Boundary: the deterministic layer can run unattended continuously; the semantic layer marks [to be verified] → model re-check → human final ruling (asynchronous, non-blocking); generation is proactively triggered by the manager and can be called directly, and does not proactively prompt installation.</li>
+      <li data-page-node-id="2G5oFFHBjaFuRSMHdJXH4d"><b data-page-node-id="F7OaaiHg1mnLcgAZrhZSNu">Protocol registration, not packaged implementation</b>: search/translation/writing/minutes transcription/Q&A — registered in protocol form (when to use it, how the output is distilled); implemented via platform-native capabilities.</li>
+    </ul>
+
+    <h3 data-page-node-id="RQ8fWvltOUIvk79CUspora">Module 6 · Meta-management loop (meta-management routing)</h3>
+    <ul data-page-node-id="lx9sISsErlZEMjVmtmrdCO">
+      <li data-page-node-id="CxeceyR0nEvuzF3nDQwYbu">obstacle → root cause → suggestion → handling (manager) → landing (SKILL.md is the single source of truth, README/MAP are derived snapshots kept in sync) → use again; meta-events such as recovery/review/version drift are all registered in the workspace REVIEWS.md — <b data-page-node-id="gYIV8mZBJrt6Um7LQcEFjO">they do not go into reports\, nor are they entered in INDEX</b>; the project archive holds only project work records.</li>
+      <li data-page-node-id="PWQnjmMmDHGNT1ZhH6yErl"><b data-page-node-id="z4pvM5TzPnhXYqKYwYY7yR">REVIEWS.template.md</b>: the template lives in the skill source package and is instantiated at initialization as the workspace's <b data-page-node-id="vDTHWTX3olWgzOI59XbfIJ">REVIEWS.md</b> (the sole landing point for meta-management events); four one-sentence sections (obstacle / root cause / improvement suggestion / handling decided by the manager); the manager manually extracts "recommend escalation" entries back into the skill source package; a deferred item is automatically reopened for review on its third recurrence.</li>
+    </ul>
+
+    <h3 data-page-node-id="q4pKGFrmdxUrzPf7aIQUy0">Attached file · Legacy project onboarding (not in the main protocol)</h3>
+    <ul data-page-node-id="CoUAKKmN0EPnAu7qnjCRwD">
+      <li data-page-node-id="NRWzP9TLBfi9m06C61DlNF"><b data-page-node-id="Flo6EPqBw71Cujyi7Bk2DM">LEGACY_ONBOARDING.md</b>: guidance dedicated to projects already under way — creating the management directory is the universal first step (every project must create it; there is no start point where you read directly); a legacy project only additionally "lightweight-registers" the information visible in the current session and does no deep historical organization; history relies on the "progressive tidying mechanism" to classify as work proceeds and backfill on demand. At onboarding, copy the SKILL.md protocol entry (the MAP reference "collaboration protocol, see SKILL.md" points to it). After creation is done, the skill is not read again; work runs only on the working files.</li>
+    </ul>
+  </div>
+
+  <div class="section" data-page-node-id="34rYwBuqAU2ivZukK0cVzI">
+    <h2 data-page-node-id="T2gH4Dwf42SWhNtjYauGeW">Platform compatibility (prerequisite for use)</h2>
+    <p data-page-node-id="URWshqb1GM49Dwsc15Z7gD">This skill is a <b data-page-node-id="i55BvDwTBI2XBVic9lyOoZ">local project-management engineering setup</b>; prerequisites: <b data-page-node-id="2joGTyPtFkVWUveobUk3c5">a local file system + command/file execution capability</b> (able to write the management directory to disk and read/write task cards and handoff files). Platforms are judged by capability dimension, not by enumerating platform names — any platform with the above capabilities (Harness-type / IDE Agent / desktop workspace Agent, etc.) is automatically compatible; it depends on no platform-private interface, skill system or API. Scenarios without local file capability (web chat / mobile App / pure conversation / raw API calls) do not meet the prerequisite and do not apply.</p>
+  </div>
+
+  <div class="section" data-page-node-id="zqVcyYNE9z7m499Ao2VlC7">
+    <h2 data-page-node-id="BUCqzfBqpIPV9s4QENaODh">4. Reading Model (takeover reads one card · append on demand)</h2>
+    <pre data-page-node-id="Q7OP4Km4oeM9JVQK7JWnxa">
+Taking-over AI:
+1) Read the task card (Description + Key points + Files involved + Last handoff) → sufficient → start work directly (zero reads of reports)
+2) Key points insufficient → follow the anchor and read the previous reports\ entry ([handoff] chain)
+   → distill the increment back onto the card → the next takeover need not read this entry again
+3) Need to trace further back / review → INDEX locates by [handoff] marker → read on demand
+4) First takeover / cross-module / overall review → read STATE (including the human-read zone) and MAP
+
+Decision mechanism (when reading history):
+├─ [handoff] → a chain node, read it (current related work context)
+├─ [done] → already done, do not read (read only for review/archiving)
+└─ [dropped] → dropped requirement, do not read (a trace is left to prevent mistaken work)
+    </pre>
+    <div class="ok" data-page-node-id="XBCtPukiwgnODoc9nr8Eni">Convergence effect: each reports entry is read at most once (distilled into the card); takeover cost ≈ <b data-page-node-id="hdXXZgBWMDSCDj2ijUCgQx">one task card</b>, occasionally ±1 reports entry; project scale does not enter the daily burden.</div>
+  </div>
+
+  <div class="section" data-page-node-id="c7WIJE4lYOJARUfxX2wmBO">
+    <h2 data-page-node-id="Tp0pBHyQKOxc2LBzcrlreN">5. Rollout Order (4 stages)</h2>
+    <div class="grid" data-page-node-id="uOmegQWcDoDv84oihFbIIj">
+      <div class="card" data-page-node-id="4wjvkAlQxYkjOKHgOJTo8M"><div class="num" data-page-node-id="jGGNhlDvoA2tEPW1zi5FED">1</div><b data-page-node-id="B1ZRueuCYVUiuB3oGqiq7l">Parameterization and unified conventions</b><p class="muted" data-page-node-id="8lZgSyiAqG86jtLMsgSVTP">README synced; full overhaul of the MAP/STATE/tasks/reports/INDEX templates; workspace root parameterized.</p></div>
+      <div class="card" data-page-node-id="lZcRsPYesFETsmWRAjBGmS"><div class="num" data-page-node-id="k8cMeH108Ac91yVp5uMqgl">2</div><b data-page-node-id="LeQZRp7gqFW7nXbkFlXHRU">Skill entry</b><p class="muted" data-page-node-id="L4CUnfcWK4xlHC35UJzJGp">SKILL.md entry + initialization checklist.</p></div>
+      <div class="card" data-page-node-id="C4843VdcIyKCV4EHKhVfY8"><div class="num" data-page-node-id="6KFRXT9yppUv7gOUK9lYF9">3</div><b data-page-node-id="MztxxXKU0QQOxEaoXTwZh8">Tool zone</b><p class="muted" data-page-node-id="1Q5yZqRas8f9051sseFpJZ">tools\README + checks\ + visualize\ + schedule\ + report\ + custom\ (script generation spec).</p></div>
+      <div class="card" data-page-node-id="LKrchAGSkalzDtXXU7se7h"><div class="num" data-page-node-id="TeutFpP6l0hbWkspc0Qiia">4</div><b data-page-node-id="TAuq7AhKCDbsqsNR4F1CPt">Meta-management and verification</b><p class="muted" data-page-node-id="2azZgoyN8BppZnjjcBnz5v">review template + dual-platform command walkthrough + full self-check.</p></div>
+    </div>
+  </div>
+
+  <div class="section" data-page-node-id="NRVU02Upo3JDhjL1EFP73S">
+    <h2 data-page-node-id="BpbjuxnHpH3ON81xBgKOuP">6. Acceptance Checklist (definition of optimization done)</h2>
+    <table data-page-node-id="vM1Ij5FTGIhhXjD7mFrK2H">
+      <tr data-page-node-id="CHxLJYg9vn4fixM4pnJvuZ"><th style="width:34px;" data-page-node-id="auea5UB81A6hDXEibOfwDE">#</th><th data-page-node-id="rejQMa9SWriS8uHjlulFGU">Acceptance item</th></tr>
+      <tr data-page-node-id="CEAWLv0A52nBmWVfC3C45B"><td data-page-node-id="4uEDgPpAkn43T7E5Ow8M5o">1</td><td data-page-node-id="EGmel6EcDnPwi0aKDSvEMz">Unified naming: directories/files (MAP/STATE/tasks/reports/INDEX) all in effect; one file per card under tasks\, named after the work</td></tr>
+      <tr data-page-node-id="HK1NE94228rNS0kmaG33TQ"><td data-page-node-id="gh1PQjwzS9JNb8vqzQqOyp">2</td><td data-page-node-id="GgUEvpO2tCDb9EASqenocL">Parameterization complete: no hard-coded paths / commands ({WORKSPACE_ROOT} confirmed once by the user; {PLATFORM}, {SHELL} in effect)</td></tr>
+      <tr data-page-node-id="QruGchs6mrtCTVDLEYJLmH"><td data-page-node-id="KKI8nICDm64Kg2Y2p7SlE4">3</td><td data-page-node-id="M04QoFKcZNRo73YUCBjbl0">Task-card-driven takeover in effect: task card (Description/Key points/Files involved/Last handoff) as the first entry point · fallback for vague instructions · precise arrival</td></tr>
+      <tr data-page-node-id="GIwW60RtkP5oxdk4kQr1X9"><td data-page-node-id="pZJpeCq15ijU46z1BW8bzM">4</td><td data-page-node-id="HDFEjwbZzh3xRlTuOmWTdD">End-of-work routing in effect: has a next step → full handoff + overwrite-style update of the task card; no next step → simplified summary + move the card to archives\done\</td></tr>
+      <tr data-page-node-id="tDA9UCAB0lGmnmknnBfmTj"><td data-page-node-id="ubYgqtWLmPdXp41CD1jpLf">5</td><td data-page-node-id="HgqUrGhCUxJlTz0u24CAUD">Handoff template: 6 blocks + block 7 "Task card update" required and ready</td></tr>
+      <tr data-page-node-id="FdsgYmvPbYSm8qmP31TbIG"><td data-page-node-id="AXhuLc0w7MDrOFr5LMbs9f">6</td><td data-page-node-id="bFY8Q2BHvrOTRCk9nnt2XE">MAP's four fixed sections + path registry (written only on new structure) ready; STATE human-read zone + AI zone + timestamp ready</td></tr>
+      <tr data-page-node-id="9gp9CVresLkbt7rWd0wiEP"><td data-page-node-id="n6ACCb7c9CxBGOqItC5VPO">7</td><td data-page-node-id="ieK8sEPpCjDwE7cQ4VwTDd">INDEX.md ready: type markers [handoff]/[done]/[dropped] + trace for dropped + credibility annotation</td></tr>
+      <tr data-page-node-id="GzsrcoY0UjmJ0pq93WsjMt"><td data-page-node-id="qQ4KDjZ5kl55WToy9aSET1">8</td><td data-page-node-id="w6n3iXt0YPM54BgNT8R8fC">SKILL.md entry + initialization checklist ready</td></tr>
+      <tr data-page-node-id="7CO4v3oEq3CeQEiV2rx03D"><td data-page-node-id="VeCbKxA5CAqUxl9dArZYEv">9</td><td data-page-node-id="I6h4aQGbyXV0bBuHtCJher">tools\ tool zone ready (README overview + checks\ + visualize\ + schedule\ + report\ + custom\ script generation spec; protocol registration, not packaged implementation)</td></tr>
+      <tr data-page-node-id="dbxdVGCR73tXLg88cMLflM"><td data-page-node-id="8mcAanhG9mxEmT0eIzsSlD">10</td><td data-page-node-id="cAC2DfjRs5gIwYIV7B71KJ">Human-read zone + AI zone ready: task-card human-read locator zone (3 lines) + STATE human-read zone (3 lines) + INDEX table human-read index</td></tr>
+      <tr data-page-node-id="gBOAcbncEeabEJsK6MFp6n"><td data-page-node-id="yiYQarTBbh1ruNet2sk4QU">11</td><td data-page-node-id="vmfulCvAbuLUt4dWhBBPIX">Meta-management routing ready (REVIEWS.template.md instantiated as the workspace REVIEWS.md; meta-events do not go into reports\ or INDEX)</td></tr>
+      <tr data-page-node-id="I18HyIv61RxXyIDMh8kH4Q"><td data-page-node-id="ouLYvO05mEoBdzw23p6YMr">12</td><td data-page-node-id="A5e27TuaTcNW3aA5BF8Zk2">Dual-platform command examples (PowerShell + bash) ready; archiving details ready</td></tr>
+      <tr data-page-node-id="aiv3gZlTe2Vl6HsSnzEMvc"><td data-page-node-id="bSQYBrfvijvo3BtGl7Zez2">13</td><td data-page-node-id="E2P8SX5vomKgGDrvkbfntj">Skill-size principle implemented: no redundant platform-native implementations, no speculative extension mechanisms, human-read zone fixed at 3 lines without bloat</td></tr>
+      <tr data-page-node-id="vg9JrBtoGaFpCEjNBI5IG5"><td data-page-node-id="agVTT8r7LEXGjTo99KGZwe">14</td><td data-page-node-id="xLUL0UZ8a7plmcqMvbJaDw">Concurrent-write rules in effect: read-before-write / verify-after-write / STATE entry-level write + conflict adjudication (same-branch ID numeric adjudication; cross-branch not adjudicated by timestamp, both sides leave a trace for the manager; collision retry)</td></tr>
+      <tr data-page-node-id="KmGlXadMCSAcJL1WZ2QUbS"><td data-page-node-id="AwlThZgKMsEWwk9Jpirpeb">15</td><td data-page-node-id="Fl2pq4Qb8ACCeDtfvHEkSL">Maintenance rules in effect: SKILL.md is the single source of truth, README/MAP are derived snapshots (versions must match; on mismatch SKILL prevails; BLUEPRINT does not participate in sync) / review before improving (meta-events registered in the workspace REVIEWS.md, not into reports\ or INDEX)</td></tr>
+      <tr><td>16</td><td>Change-protection zone and archive safeguards in effect: the SKILL.md Section 8 modification gate is ready; the archive red line (no deleting/moving reports\ or archives\) is written down; Checkpoint 7 registry reconciliation; MAP backup method registered; when git is available, Changes items carry a commit hash</td></tr>
+    </table>
+  </div>
+
+  <div class="foot" data-page-node-id="vzE7wEcsQVqDctuOtqZzs4">Project Management Lite Work Assignment · Skill Design Blueprint · Author: 如天之星 · MIT</div>
+</div>
+</body>
+</html>

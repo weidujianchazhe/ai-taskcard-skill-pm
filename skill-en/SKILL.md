@@ -1,5 +1,5 @@
 ---
-name: project-management-lite
+name: AI-Relay-project-management-lite
 description: General-purpose project management skill: task-card-driven lightweight takeover, overwrite-style state, end-of-work routing handoff, INDEX type markers, supporting multi-AI / cross-platform / cross-time / cross-project relay. A project may be complex and heavy while the taking-over AI reads only what it needs. Use when starting a new project, taking over a long-idle project, or onboarding a legacy project.
 author: 如天之星
 license: MIT

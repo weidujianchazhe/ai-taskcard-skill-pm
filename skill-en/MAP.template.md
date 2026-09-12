@@ -14,7 +14,7 @@
 - Workspace root: `{WORKSPACE_ROOT}` (the collaborative workspace, outside the project, physically separated; **confirmed once with the user at initialization** — default or custom; every project goes under that root)
 - Code path (the code workspace): `[CODE_PATH]` (provided by the user, physically separated from the management directory)
 - **Skill source package path**: `[SKILL_SOURCE_PATH]` (absolute path of the skill package — used by gap filling and outdated-version detection; filled in at initialization, "—" if not registered)
-- **Manager (decision maker)**: `[NAME_OR_TITLE]` (the final decider on REVIEWS dispositions, cross-branch conflict resolution and escalation of meta events — REVIEWS records this field)
+- **Manager (decision maker)**: `[DECISION_MAKER]` (the final decider on REVIEWS dispositions, cross-branch conflict resolution and escalation of meta events — REVIEWS records this field)
 - **Workspace backup method**: `[BACKUP_METHOD]` (git / periodic copy / none — deleting a whole directory exceeds what the protocol can recover, and this is the last resort; the protocol registers it, it does not package an implementation)
 - Tech stack: `[TECH_STACK]`
 - Run/build (if applicable): `[RUN_COMMAND]` / `[BUILD_COMMAND]`

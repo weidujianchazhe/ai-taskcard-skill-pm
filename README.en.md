@@ -70,7 +70,7 @@ Workflow: copy `skill-en/` into your skills directory → for a new project read
 | **Claude Code and other environments that support SKILL.md** | copy `skill-en/` into your skills directory |
 | **Plain-document use** | read `skill-en/SKILL.md` directly and follow the protocol (works with any LLM) |
 
-> Skill name: the English package declares `name: project-management-lite` in its frontmatter. If your platform requires the folder name to match the skill name, rename the copied folder accordingly.
+> Skill name: the English package declares `name: AI-Relay-project-management-lite` in its frontmatter. If your platform requires the installed folder name to match the skill name, rename the copied folder accordingly. Note that some platforms (Claude Code and similar) only accept lowercase letters, numbers and hyphens in a skill name — if yours rejects mixed case, use `ai-relay-project-management-lite` instead.
 
 ## 5. Quick start
 

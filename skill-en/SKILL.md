@@ -6,7 +6,7 @@ license: MIT
 version: 1.0.1
 ---
 
-# Project Management Lite (skill entry)
+# AI-Relay Project Management Lite (skill entry)
 
 > **Positioning**: a general-purpose project management skill that serves no particular project. Core philosophy — a project may be complex and heavy, the taking-over AI reads only what it needs: the burden does not grow with project size.
 > **Essential goal (across obstacles)**: cross the obstacles of platform, AI, time and project, so the taking-over AI understands the work at a lower reading cost and with fewer errors.

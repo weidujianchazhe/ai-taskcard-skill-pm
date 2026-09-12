@@ -1,6 +1,6 @@
 **English** | [简体中文](README.md)
 
-# Project Management Lite (ai-taskcard-skill-pm)
+# AI-Relay Project Management Lite (ai-taskcard-skill-pm)
 
 > **Last updated: 2026-09-12** (version v1.0.1)
 >

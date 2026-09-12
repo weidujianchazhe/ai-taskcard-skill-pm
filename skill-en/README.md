@@ -1,4 +1,4 @@
-# Project Management Lite (user guide)
+# AI-Relay Project Management Lite (user guide)
 
 > Version v1.0.1
 

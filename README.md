@@ -1,6 +1,6 @@
 **简体中文** | [English](README.en.md)
 
-# 项目管理AI轻量化接力（Project Management Lite）
+# 项目管理AI轻量化接力（AI-Relay Project Management Lite）
 
 > **最近更新：2026-09-12**（版本 v1.0.1）
 >

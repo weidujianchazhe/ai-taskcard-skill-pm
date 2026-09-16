@@ -1,6 +1,6 @@
 # [PROJECT_NAME] · Project Map (MAP)
 
-> Version v1.0.1
+> Version v1.2.0
 
 > This file is the project's project map: **environment / rules / protocol / path registry** — it records "what is where and by what rules things run", and never records progress (progress belongs to STATE, records belong to reports\ + INDEX).
 > **Reading**: read it at a first takeover / across modules / for an overall review; for a day-to-day named task, do not read this file.
@@ -30,6 +30,9 @@
 - **INDEX main-file row count**: `20` (the user may customize it — small projects stay at 20, large projects raise it as needed; when the count reaches 80% of the configured value at end-of-work, the AI reminds the user to adjust)
 - **reports archive threshold**: `20` (once the number of files in reports\ reaches it, the oldest is archived into archives\ by month; the user may customize)
 - **Periodic AI audit**: `off` (the scheduled-execution switch for the checks checklist, **its state recorded on this line**, off by default; once set to "on", the AI runs it per the platform's scheduling ability)
+- **Protocol identifiers**: `TASK-ID` / `EVENT-ID` / `DESIGN-ID` are stable and never reused; lifecycle and role/permission/mode rules are defined in `SKILL.md` v1.2.0
+- **Concurrency policy**: single logical writer per file; revision + SHA-256 CAS and atomic same-directory writes; stale writes create `*.conflict.<EVENT-ID>.md`
+- **Archive policy**: `archives\INDEX_archived.md` is immutable, append-only, canonical, and must be created during initialization; active rows point to canonical reports
 - **Project viewing view**: the human-eyes convention is in section 6 of SKILL.md (entry / granularity / item-by-item viewing / presentation conventions)
 
 ## 3. Protocol (collaborative protocol · derived snapshot; the authoritative source is the workspace SKILL.md)
@@ -41,9 +44,10 @@
 3. **End-of-work four-piece set**: handoff reports → card update/move → INDEX adds one row (type [handoff]/[done]/[dropped]; rows are never lost — rows past N in the main file move into the archive file) → STATE entry-level write (blind whole-file overwrite is forbidden)
 4. **Minimal handoff**: 6 blocks + block 7 "Task card update" (mandatory when a matching task card exists); no diff, no copied code
 5. **Naming rules**: reports `YYYY-MM-DD_topic_AI-tag.md` (AI tag: `{PLATFORM}-{AI_NAME}-{SHORT_CODE}`, 2-4 random characters; list the directory first to confirm there is no duplicate name); task cards are named after the work
-6. **IDs and concurrency**: ID XXNNNN — a branch letter is first registered in the MAP "branch numbering registry", digits within a branch increase strictly by numeric value, and a collision is rewritten as +1 with a trace; read-before-write + verify-after-write; across branches IDs are not compared and timestamps do not decide — leave a trace and hand it to the manager, timestamps are supporting evidence only
+6. **Stable IDs and concurrency**: TASK-ID / EVENT-ID / DESIGN-ID are immutable; read revision/hash before writing, use atomic rename or CAS, verify after writing; a single-writer conflict creates `CONFLICT_*.md` and goes to the manager, never to timestamp arbitration
 7. **Distill back to card + progress anchor**: after reading reports, distill the increments back onto the card (each file is read at most once); while working, overwrite at each landing point into the card's "Progress anchor" line, resume along the anchor + git status after an interruption, and clear it to "—" once distilled at end-of-work
-8. **Archive and meta-management**: reports\ and archives\ must not be deleted or moved (the only exception is end-of-work archiving, repointing the INDEX row afterwards); register new files/paths/branches in MAP; the skill's own affairs go to REVIEWS.md, never into reports\, never logged in INDEX
+8. **Archive and meta-management**: reports\ and archives\ must not be deleted or moved (the only exception is end-of-work archiving, repointing via a new pointer event); `archives\INDEX_archived.md` is immutable/append-only; the skill's own affairs go to REVIEWS.md, never into reports\, never logged in INDEX
+9. **Blocking completion gate**: completion is explicit, and cannot pass until handoff → card/archive → INDEX pointer → STATE plus revision/hash verification all land successfully
 
 ## 4. Path registry (written only when something is added)
 

@@ -2,7 +2,7 @@
 
 # AI-Relay Project Management Lite (ai-taskcard-skill-pm)
 
-> **Last updated: 2026-09-12** (version v1.0.1)
+> **Last updated: 2026-09-16** (version v1.2.0)
 >
 > A general-purpose "cross-obstacle" project-management skill: **task-card-driven lightweight takeover · overwrite-style state · end-of-work routing handoff · INDEX type markers**.
 > Supports multi-AI / cross-platform / cross-time / cross-project relay — crossing platform, AI, time and project obstacles, so the taking-over side understands the work at a lower reading cost and with fewer errors.
@@ -20,7 +20,7 @@ Inspired by 《为什么越改越偏？》("Why Does It Drift Further With Every
 | **English** | [`skill-en/`](skill-en/) | this file | copy `skill-en/` into your skills directory |
 | **简体中文** | [`skill/`](skill/) | [README.md](README.md) | 复制 `skill/` 到技能目录 |
 
-The two packages are **fully self-contained and structurally identical** — same file names, same relative paths, same protocol version (`v1.0.1`). They are two language editions of one protocol, not two different skills.
+The two packages are **fully self-contained and structurally identical** — same file names, same relative paths, same protocol version (`v1.2.0`). They are two language editions of one protocol, not two different skills.
 
 > **Do not mix languages inside a single workspace.** Task-card field names, INDEX type markers and handoff block titles are the data contract, and they are fixed per language. A workspace is initialized in one language and stays in it. When a handoff really must cross languages, map field by field with the Chinese↔English term table in `SKILL.md` section 3.4.
 

@@ -39,7 +39,7 @@ At this point the AI reads this file, executes the "onboarding flow", and brings
 
 ## 3. Execution flow (dedup check first + five steps: light registration → build structure → backfill → first record → run)
 
-### Step 0: dedup check first — does a management instance for this project already exist (v1.0.1 prerequisite, mandatory)
+### Step 0: dedup check first — does a management instance for this project already exist (v1.2.0 prerequisite, mandatory)
 
 Before onboarding begins, first probe under `{WORKSPACE_ROOT}` (and the visible scope of the skill source package) for **whether a management directory / workspace for this project already exists**:
 - Already exists → **first merge or confirm the single authoritative copy** (continue managing from that copy; backfill historical gaps progressively under the existing protocol); **starting another new management directory is forbidden** — two management directories for the same project cause state splitting (higher read cost and error rate);

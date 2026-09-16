@@ -1,6 +1,6 @@
 # Handoff record spec (one file per record)
 
-> Version v1.0.1
+> Version v1.2.0
 
 > File name: `YYYY-MM-DD_topic_AI-tag.md` (AI tag: `{PLATFORM}-{AI_NAME}-{SHORT_CODE}`, short code 2-4 random characters — multiple instances on the same platform never collide; list the reports\ directory first to confirm there is no duplicate name).
 > A new record MUST be created whenever code changes are completed, a deliverable is produced, the user makes a new decision, or an unsolved problem is hit.
@@ -11,6 +11,8 @@
 ## Handoff template (6 mandatory blocks + block 7 "Task card update", mandatory when a matching task card exists)
 
 ### Handoff  YYYY-MM-DD HH:MM
+
+> **Evidence**: `EVENT-ID: EVT-[UTC_DATE]-[SEQUENCE]` · `TASK-ID: TASK-[STABLE_SLUG]` · `DESIGN-ID: DES-[SLUG]` or `—` · `revision: [N]` · `content-sha256: [SHA256_OF_EXACT_UTF8_BYTES]` · `encoding: UTF-8 (BOM present/absent)` · `source pointer: [PATH_OR_EVENT-ID]`
 
 - **This request**: one line (what the user wants)
 - **Code context for this task**: list only the file paths relevant to this task (do not give the whole directory tree)

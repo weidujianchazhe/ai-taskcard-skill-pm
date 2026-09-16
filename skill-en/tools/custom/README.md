@@ -2,6 +2,8 @@
 
 > User-defined tool directory — when AI operations on some platform repeatedly fail, or when check / self-healing / report tools are needed, the AI reads the specs in this directory and generates custom tools (scripts / documents / other) for the project's actual situation.
 > Entry order: this README → SCRIPT_SPEC.md (master spec: capability boundaries / generation flow / interface contract / platform adaptation) → SPEC_protocol_audit.md or SPEC_recovery.md (sub-specs).
+>
+> Version v1.2.0 · These are generation specs, not a default runtime; scripts are optional and read-only by default.
 
 ## Purpose
 

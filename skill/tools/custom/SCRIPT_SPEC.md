@@ -4,7 +4,7 @@
 > **触发**：用户说「建立本地检查脚本」「AI 操作老出问题」「我需要检查/自愈工具」时，AI 读本文件执行生成流程。
 > **与技能的关系**：本文件是技能源包规范（跨平台通用，纯 MD）；生成的脚本是项目工作区本地资产（单平台实现、不进技能包、随项目走）。
 > **入口顺序**：custom\README.md（入口）→ 本文件（总纲）→ SPEC_protocol_audit.md / SPEC_recovery.md（子规格）。
-> **修订（v1.0.1，2026-09-09）**：生成粒度默认「一功能一脚本」；新增「脚本层/运转层分离」的集·组运转框架（见「二、生成流程」末）。
+> **修订（v1.2.0，2026-09-16）**：生成粒度默认「一功能一脚本」；新增稳定 ID、revision/hash、原子写/CAS、归档门禁与 RAW/NORMALIZED-SHA256 证明约束。本文只定义脚本生成规范，不启用默认运行时。
 
 ---
 
@@ -15,12 +15,12 @@
 | 能力 | 抓什么 | 依赖的协议锚点 |
 |---|---|---|
 | 收工门禁 | 四件套核对打勾走过场、缺件漏件 | 已提炼 / 上次交接 / 编号 |
-| 漂移检测 | 三处同步副本版本不一致 | 版本行（v1.0.1） |
+| 漂移检测 | 协议副本版本不一致 | 版本行（v1.2.0） |
 | 编号审计 | 分支未登记、跳号、撞号、非法类型 | 分支编号登记 / XXNNNN |
 | 命名审计 | reports 命名违规、同名 | YYYY-MM-DD_主题_AI标识 |
 | 引用审计 | 锚点悬空、INDEX 指向不存在 | 代码根路径 / 上次交接 |
 | 越界改动 | 改了「涉及」以外文件 | 代码根路径 / 涉及 |
-| 并发冲突 | 写前写后被他人插写 | mtime / 内容哈希 |
+| 并发冲突 | 写前写后被他人插写 | revision / RAW-SHA256 / NORMALIZED-SHA256 / owner |
 | 恢复脚手架 | 数据丢失后的重建草稿 | INDEX / reports（追加式） |
 | 归档一致性 | reports 超阈值、done 对账 | archives 约定 |
 
@@ -84,9 +84,9 @@
 | 内容哈希 | Get-FileHash -Algorithm SHA256 | sha256sum | hashlib.sha256 |
 | 正则提取 | -match / -replace | grep -E / sed -E | re |
 | 目录递归 | Get-ChildItem -Recurse | find | os.walk |
-| 文本写入 | Set-Content -Encoding UTF8 | cat > | open(..., encoding=...) |
+| 文本写入 | Set-Content -Encoding UTF8 + 临时文件原子替换 | 临时文件 + mv | open(..., encoding="utf-8") + os.replace |
 
-> 路径分隔符：Windows 用 \，POSIX 用 /；脚本内禁止硬编码分隔符，用平台 API 拼接。
+> 路径分隔符：Windows 用 \，POSIX 用 /；脚本内禁止硬编码分隔符，用平台 API 拼接。哈希必须同时保留原始字节 RAW-SHA256 与统一 UTF-8/换行/BOM 规范化后的 NORMALIZED-SHA256，并记录编码与候选源路径。
 > 中文内容：一律 UTF-8；PowerShell 需注意编码参数（如 -Encoding UTF8）。
 
 ---

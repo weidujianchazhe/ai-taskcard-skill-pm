@@ -3,7 +3,7 @@ name: AI-Relay-project-management-lite
 description: General-purpose project management skill: task-card-driven lightweight takeover, overwrite-style state, end-of-work routing handoff, INDEX type markers, supporting multi-AI / cross-platform / cross-time / cross-project relay. A project may be complex and heavy while the taking-over AI reads only what it needs. Use when starting a new project, taking over a long-idle project, or onboarding a legacy project.
 author: 如天之星
 license: MIT
-version: 1.0.1
+version: 1.2.0
 ---
 
 # AI-Relay Project Management Lite (skill entry)
@@ -11,7 +11,7 @@ version: 1.0.1
 > **Positioning**: a general-purpose project management skill that serves no particular project. Core philosophy — a project may be complex and heavy, the taking-over AI reads only what it needs: the burden does not grow with project size.
 > **Essential goal (across obstacles)**: cross the obstacles of platform, AI, time and project, so the taking-over AI understands the work at a lower reading cost and with fewer errors.
 > **Legacy project (already under way, no management structure)**: read `LEGACY_ONBOARDING.md` first (lightweight registration + progressive tidying, no deep historical reorganization).
-> **Language edition**: this is the English edition, mirroring the Chinese package v1.0.1. The two editions are structurally identical; the Chinese↔English data-contract mapping is in section 3.4.
+> **Language edition**: this is the English edition, mirroring the Chinese package v1.2.0. The two editions are structurally identical; the Chinese↔English data-contract mapping is in section 3.4.
 
 ---
 
@@ -26,7 +26,7 @@ version: 1.0.1
 ```
 ① Confirm the workspace root {WORKSPACE_ROOT} (the user chooses once: default or custom; subfolders of the management directory are created automatically by the skill)
 ② Create the management directory (the universal first step, required by every project):
-   MAP.md / STATE.md / REVIEWS.md / tasks\ / reports\ / INDEX.md / archives\ (including done\) / tools\
+   MAP.md / STATE.md / REVIEWS.md / tasks\ / reports\ / INDEX.md / archives\ (including done\ and `INDEX_archived.md`) / tools\
 ③ Fill in the initial information: replace the MAP placeholders (environment / rules / protocol / path registry, including [SKILL_SOURCE_PATH], [BACKUP_METHOD], [DECISION_MAKER] and the reports archive threshold)
 ④ Register the first task card (under tasks\, named after the work)
 ⑤ Run (the skill is never re-read after this; from here on work from the work files alone):
@@ -53,16 +53,16 @@ version: 1.0.1
 | Archive red line | **Deleting or moving any file under reports\ or archives\ is forbidden** — the only exception is the end-of-work archiving flow (rolling archive past the threshold, moving completed cards), and after a move the matching INDEX row must be repointed; changes are recorded in three layers: **MAP records structure** (new paths / new branches), **reports record a summary** (when the project uses git, every "Changes" item carries a commit hash — `git show` gives the full diff when needed), **INDEX records the pointer row** (double-write, never lost) |
 | Naming rules | reports `YYYY-MM-DD_topic_AI-tag.md` (the AI tag contains a short code: `{PLATFORM}-{AI_NAME}-{SHORT_CODE}`, 2-4 random characters; list the directory first to confirm there is no duplicate name); task cards are named after the work |
 | Meta-management routing | The skill's own affairs (REVIEWS retrospectives, version-drift detection, recovery-action registration) are always appended to the workspace `REVIEWS.md`, and are **never written to reports\, never logged in INDEX** — project reports/INDEX hold project work records only |
-| Concurrent-write rules | Summary: read-before-write · verify-after-write · STATE entry-level write · AI tag carries a short code · collision retry · cross-branch conflicts go to the manager (**details in 3.2**) |
+| Concurrent-write rules | Read-before-write · revision/hash · atomic rename or CAS · verify-after-write · STATE entry-level write · single-writer ownership · conflict files go to the manager (**details in 3.2**) |
 | Gap filling | Summary: the skill source package is the authoritative source; if something is missing or outdated, copy and instantiate it from the source package; if data is lost, recover it along the INDEX/reports traces; whatever cannot be recovered is marked "data pending" and never faked (**details in 3.3**) |
 
 ### 3.2 Concurrent-write rules (details)
 
-Read-before-write (read the latest before overwrite-writing STATE/a task card or append-writing INDEX) · verify-after-write (read back after writing to confirm it landed) · **STATE entry-level write** (during a parallel end-of-work each AI reads the latest first and updates only its own task's entry and the human-read zone — the "current progress" one-liner is overwritten by the last one to finish — every other entry stays as it is; blind whole-file overwrite is forbidden) · **AI tag carries a short code** (multiple instances on the same platform never collide) · **ID collision retry** (if verify-after-write finds the same ID already exists in the same branch → the later writer adds +1 to its ID, rewrites the row and leaves a trace in its own reports) · conflict resolution (different fields are merged and kept; for the same field, only within the same branch does the larger numeric ID overwrite the smaller; **across branches IDs are not compared and timestamps do not decide** — cross-platform clocks are untrustworthy; both sides leave a trace in their own reports and hand it to the manager for a decision, and timestamps are supporting evidence only, never the basis).
+Read-before-write and record `revision`, owner, RAW-SHA256, and NORMALIZED-SHA256. Prefer a temporary same-directory file plus atomic rename; otherwise use compare-and-swap and recheck revision/hash before commit. Verify-after-write must read back the same metadata. Each file has one declared writer; other writers create `CONFLICT_<ID>_<timestamp>.md` and never overwrite. STATE updates are entry-level, preserving other entries. A failed CAS or archive step blocks completion and is recorded as an event.
 
 ### 3.3 Gap filling (details)
 
-The skill source package is the authoritative source: if a skill file in the project workspace is missing or outdated (the source package version is higher) → copy the template from the source package and instantiate it, refilling it (the source package path is in the MAP environment section "Skill source package path"); if a data file (task card / reports) is lost, recover it from INDEX/reports, and if INDEX is lost as well → mark it "data pending", never fake it; **task card lost** → among the recent INDEX rows find the nearest [handoff] row → read the latest reports along the handoff file column → rebuild the task card from reports (description / key points / files involved / last handoff) → create it anew under tasks\; **STATE corrupted** → restore it from the latest reports (the latest handoff record holds the current progress / next step); with any recovery action, log a line in **REVIEWS.md** in passing (meta-management routing, not into reports/INDEX).
+The skill source package is authoritative. Recovery records candidate source path, read time, encoding/BOM, RAW-SHA256 (original bytes), NORMALIZED-SHA256 (canonical UTF-8/newline form), and source proof. Missing proof means `data pending`, never a fabricated value. Recovery actions are logged in REVIEWS.md.
 
 ### 3.4 Glossary (retained terms · plain language)
 
@@ -86,30 +86,68 @@ The skill source package is the authoritative source: if a skill file in the pro
 
 > **Chinese↔English data-contract mapping** (for a cross-language takeover, or when upgrading a workspace initialized with the Chinese package — the field names, markers and block titles below are the data contract, not prose):
 
-| Chinese (v1.0.1) | English | Note |
+| Chinese (v1.2.0) | English | Note |
 |---|---|---|
 | 编号 | ID | |
 | 状态 | Status | |
 | 描述 | Description | |
 | 要点 | Key points | |
-| 代码根路径 | Code root path | renamed from 工程锚点 in v1.0.1 |
+| 代码根路径 | Code root path | renamed from 工程锚点 in v1.2.0 |
 | 涉及 | Files involved | |
 | 承接 | Claimed by | |
 | 进度锚点 | Progress anchor | |
 | 上次交接 | Last handoff | |
-| 已提炼 | Distilled | renamed from 最后折叠 in v1.0.1 |
+| 已提炼 | Distilled | renamed from 最后折叠 in v1.2.0 |
 | [接力] / [完成] / [废弃] | [handoff] / [done] / [dropped] | INDEX type markers |
 | 进行中 / 待认领 / 已阻塞 | In progress / Unclaimed / Blocked | task card status values |
 | 本次需求 / 本次涉及工程信息 / 改动点 / 验证结果 / 数据影响 / 下一步 | This request / Code context for this task / Changes / Verification / Data impact / Next step | the 6 handoff blocks |
 | 任务卡更新（第 7 块） | Task card update (block 7) | |
-| 技能源包 · 提炼回卡 · 人读区 + AI 区 · 项目地图（MAP） · 先查重 · 未建卡的工作 / 已建卡的工作 | skill source package · distill back to card · human-read zone + AI zone · project map (MAP) · dedup check first · work with no card yet / work already on a card | v1.0.1 terminology cleanup (legacy Chinese names → current) |
-| 锚点组 · 派生视图 / 机械重写 · 内容级并发安全 · 树链式 | (merged into the "Last handoff" description) · (the human-read zone is auto-generated from the AI zone) · concurrent-write rules · division by module/branch | v1.0.1 terminology cleanup (continued; some legacy terms were removed rather than renamed) |
+| 技能源包 · 提炼回卡 · 人读区 + AI 区 · 项目地图（MAP） · 先查重 · 未建卡的工作 / 已建卡的工作 | skill source package · distill back to card · human-read zone + AI zone · project map (MAP) · dedup check first · work with no card yet / work already on a card | v1.2.0 terminology cleanup (legacy Chinese names → current) |
+| 锚点组 · 派生视图 / 机械重写 · 内容级并发安全 · 树链式 | (merged into the "Last handoff" description) · (the human-read zone is auto-generated from the AI zone) · concurrent-write rules · division by module/branch | v1.2.0 terminology cleanup (continued; some legacy terms were removed rather than renamed) |
+
+### 3.5 P0/P1 protocol strengthening (v1.2.0)
+
+This package defines a **protocol, template, and local-script-generation specification**. It does not install, imply, or change a default runtime, daemon, watcher, scheduler, database, or automatic writer. Generated scripts are optional, local, read-only by default, and must follow `tools\custom\SCRIPT_SPEC.md`.
+
+**Stable identifiers and lifecycle**
+
+- Every task has an immutable `TASK-ID` (format `TASK-<stable slug>`); every recorded transition has an immutable `EVENT-ID` (`EVT-<UTC date>-<sequence>`); every design decision has an immutable `DESIGN-ID` (`DES-<slug>`). IDs are never reused, renumbered, or derived from mutable filenames. Renames retain the same ID.
+- A task lifecycle is `proposed ? active ? blocked ? completed|cancelled ? archived`; transitions require an event record, actor, UTC timestamp, source pointer, and reason. A design lifecycle is `proposed ? accepted|rejected ? superseded`; supersession points to the replacement and never rewrites the original decision.
+- Roles are `manager` (approve policy, resolve conflicts, final arbitration), `owner` (edit/claim its task), `contributor` (edit only assigned task files), `reviewer` (read and propose findings), and `reader` (read-only). Permission is deny-by-default: only the manager may change role/permission rules, archive policy, or resolve cross-branch conflicts; a writer may never approve its own disputed write.
+
+**Mode matrix and triggers**
+
+| Mode | Allowed writes | Required gate | Trigger semantics |
+|---|---|---|---|
+| Read/review | none | none | explicit read/review request or takeover |
+| Work | claimed task/card and progress anchor | read-before-write + verify-after-write | task-card takeover |
+| End-of-work | handoff, card, INDEX, STATE, and approved archive move | completion gate must pass all four pieces | explicit completion/clock-off signal; never inferred from silence |
+| Recovery | drafts/suggestions only by default | manager/user confirmation before persistence | missing/corrupt anchor, state, index, or hash proof |
+| Audit/script | no project writes | deterministic checks only | manual, scheduled, or post-end-of-work invocation; scheduling is optional |
+
+A trigger is an explicit user command, lifecycle transition, or configured hook; a script must not interpret ordinary progress text as completion. The **completion gate is blocking at the end-of-work boundary**: if any required artifact, pointer, ID, hash, or verification is missing, the work remains active and the card cannot be moved to `archives\done\` or marked `[done]`. Semantic uncertainty is `[to be verified]` and blocks completion until a manager resolves it.
+
+**Archive integrity and immutable index**
+
+`archives\INDEX_archived.md` is the append-only, canonical full index. Existing rows are immutable: no deletion, rewrite, reorder, or in-place correction. Corrections append a superseding row with the prior row's `EVENT-ID` and pointer. Each active `INDEX.md` row points to one canonical report; archive moves update only a new pointer event, never the historical row. The archive algorithm is: read and hash source -> acquire the single-writer lock -> append to archive -> verify bytes/hash -> atomically replace the bounded active index -> release lock. Failure at any step leaves the source and prior index untouched, records a conflict file, and blocks completion; partial destinations are quarantined for manager review.
+
+**Revision, hashes, CAS, and writes**
+
+Every mutable protocol file carries a monotonic `revision` and a `content-sha256` over its exact UTF-8 bytes (without a trailing normalization pass). Writers use compare-and-swap (CAS): read revision/hash, write a temporary sibling in the same directory, flush/close, verify hash, then atomic rename/replace. There is one logical writer per file; locks are advisory coordination, not permission to bypass CAS. A stale revision/hash produces `*.conflict.<EVENT-ID>.md` containing base revision/hash, attempted revision/hash, actor, and pointers; never overwrite or silently merge. All writes are read-before-write and verify-after-write.
+
+**STATE concurrency boundary**
+
+STATE uses entry-level ownership: a writer may change only its claimed task entry and the generated human-read locator fields; the current-progress summary is last-writer-wins only after CAS succeeds. Blind whole-file replacement is forbidden. Concurrent changes to different entries may be merged only from the latest base; same-entry conflicts create a conflict file and require manager arbitration. INDEX and `archives\INDEX_archived.md` remain single-writer append surfaces.
+
+**Recovery proof**
+
+Recovery must retain both raw and normalized evidence. For each recovered artifact record `raw-sha256`, `normalized-sha256`, encoding (UTF-8; BOM present/absent), source path/pointer, source revision, and the algorithm used for normalization (line endings and final newline only). Raw bytes are authoritative for integrity; normalized text is for comparison/display and never substitutes for raw proof. If source proof or encoding is unknown, mark `data pending` and do not fabricate content; log the recovery event in `REVIEWS.md`.
 
 ## 4. Initialization checklist
 
 - [ ] Probed {WORKSPACE_ROOT} first for an existing management instance of this project (if there is one → merge / confirm the single original first; starting a second directory is forbidden)
 - [ ] The workspace root {WORKSPACE_ROOT} has been confirmed with the user (default or custom)
-- [ ] The management directory has been created: MAP / STATE / REVIEWS / tasks\ / reports\ / INDEX.md / archives\ (**including done\**) / tools\
+- [ ] The management directory has been created: MAP / STATE / REVIEWS / tasks\ / reports\ / INDEX.md / archives\ (**including done\ and `INDEX_archived.md`**) / tools\
 - [ ] Every MAP placeholder has been replaced with the project's real information (**including [SKILL_SOURCE_PATH], [BACKUP_METHOD], [DECISION_MAKER]**; the rules-section settings are confirmed: INDEX main-file row count / reports archive threshold / periodic AI audit switch)
 - [ ] The first task card has been created (with a human-read locator block + AI field block)
 - [ ] Handoff template block 7 "Task card update" is ready
@@ -229,3 +267,24 @@ The skill source package is the authoritative source: if a skill file in the pro
 > **ID rules are a reconciliation interface, not a formatting preference**: changing the ID format / increase rule / registration requirement means changing the entire logical basis of Checkpoint 4 and the way the [handoff] chain continues (see B.6) — it must first pass the A.2 cross-impact check, grepping the whole package for the sync set before anything is touched.
 
 > The complete design blueprint is in `BLUEPRINT.md` (its 6 points are the authoritative quick-reference); the HTML edition `project-management-lite-blueprint.html` is a supplementary design document outside the package (this package is pure Markdown and does not carry it; a publisher only needs to place it outside the package).
+
+### 3.5 Stable IDs, lifecycle, roles, and modes
+
+- `TASK-ID`: `TASK-YYYYMMDD-<6 uppercase base32>`; immutable after task-card creation.
+- `EVENT-ID`: `EVT-YYYYMMDD-<8 uppercase base32>`; unique for every handoff, archive, recovery, conflict, or approval event. A retry creates a new event.
+- `DESIGN-ID`: `DSN-YYYYMMDD-<6 uppercase base32>`; draft -> review -> approved/rejected/retired. Only an approved design card may generate an execution card, which links the DESIGN-ID.
+
+| Role | Allowed | Forbidden |
+|---|---|---|
+| Execution AI | Own TASK-ID, own reports/STATE entry, propose design | Approve designs, overwrite another owner, delete/move archives |
+| Audit AI | Read-only checks and findings | Modify project records or decide disputes |
+| Manager/arbiter | Approve, assign owners, arbitrate, retire | Rewrite immutable history without evidence |
+| Recovery AI | Generate read-only candidates and proofs; write confirmed drafts | Overwrite formal files without confirmation |
+
+| Mode | File set | Checks and upgrade |
+|---|---|---|
+| light | task cards, INDEX, immutable archive index | ID/path/completion-gate checks; upgrade to standard for parallel work |
+| standard | light + MAP, STATE, reports, REVIEWS | four-piece set, entry-level STATE, version/archive checks; upgrade to coordination for review/conflicts |
+| coordination | standard + design cards, permissions, conflict files | manager-assigned ownership, CAS/atomic writes, approval gates |
+
+The archive index is immutable append-only history; `INDEX.md` is only the bounded current pointer. Archive first, verify hashes, then CAS-update the pointer. Any failure keeps the old pointer, writes a conflict file and event, and blocks completion. This package specifies protocols, templates, and script-generation rules; it does not ship or enable a default runtime, daemon, watcher, scheduler, or permission service.

@@ -1,6 +1,6 @@
 # AI-Relay Project Management Lite (user guide)
 
-> Version v1.0.1
+> Version v1.2.0
 
 > This is a **general-purpose project management skill template**: any project can copy this template to build its own collaborative workspace; it supports multi-AI / cross-platform / cross-time / cross-project relay work.
 >
@@ -49,8 +49,8 @@ The skill source package (outside, general-purpose) and the project workspace la
 > **Dedup check first**: after confirming the workspace root and before creating directories, probe whether a management instance for this project already exists under that root; if it does → merge / confirm the single copy first, and never start a second directory.
 2. **Build the workspace per the "workspace file list"** (do not copy the whole package; both initialization paths share this list, legacy onboarding is in LEGACY_ONBOARDING.md):
    - **Instantiate** (rename the template and refill): `MAP.template.md` → `MAP.md`, `STATE.template.md` → `STATE.md`, `INDEX.template.md` → `INDEX.md`, `REVIEWS.template.md` → `REVIEWS.md`
-   - **Copy verbatim**: `SKILL.md` (the protocol entry, which travels with the workspace), `tasks\TASK_CARD.template.md` (format reference), `reports\HANDOVER.template.md` (format reference), `archives\README.md`, `tools\README.md`
-   - **Create empty directories**: `tasks\`, `reports\`, `archives\done\`
+   - **Copy verbatim**: `SKILL.md` (the protocol entry, which travels with the workspace), `tasks\TASK_CARD.template.md` (format reference), `designs\DESIGN_CARD.template.md` (design-card format), `reports\HANDOVER.template.md` (format reference), `archives\README.md`, `tools\README.md`
+   - **Create empty directories and archive index**: `tasks\`, `reports\`, `archives\done\`; create `archives\INDEX_archived.md` as the append-only canonical index (with its header, even when empty)
    - **Not into the workspace** (stay in the skill source package, pulled on demand): `README.md`, `BLUEPRINT.md`, `LEGACY_ONBOARDING.md`, the tools\ sub-specs (checks / visualize / schedule / report / custom)
 3. Open `MAP.md` and replace the two kinds of placeholder — the `[]` human-filled items (below) and the `{}` runtime variables (`{WORKSPACE_ROOT}` is confirmed once with the user; `{PLATFORM}`/`{SHELL}` are filled per environment):
    - `[PROJECT_NAME]`, `[CODE_PATH]`, `[TECH_STACK]`, `[OUT_OF_SCOPE_MODULES/BOUNDARIES]`, `[RUN_COMMAND]`, `[BUILD_COMMAND]`, `[PROJECT_RULE]`, `[SKILL_SOURCE_PATH]` (used by gap filling and outdated-version detection)
@@ -92,7 +92,8 @@ The skill source package (outside, general-purpose) and the project workspace la
 | `SKILL.md` | Skill entry and single source of truth for the protocol (positioning/triggers/workflow/core protocol/checklists/viewing view/maintenance rules/change-protection zone) |
 | `MAP.template.md` | Project map skeleton; copy to `MAP.md` and fill the placeholders (fixed four sections: environment/rules/protocol/paths; the protocol section is a derived snapshot of SKILL.md) |
 | `STATE.template.md` | Current-state snapshot skeleton (human-read zone 3 lines + progress/blockers/decision points/timestamp, entry-level overwrite) |
-| `tasks\TASK_CARD.template.md` | Task card skeleton (human-read locator 3 lines + ID/status/description/key points/code root path/files involved/claimed by/progress anchor/last handoff/distilled; **the card ends with the end-of-work protocol memo** — the four-piece set / MAP registration / archive red line travel with the card), one file per card named after the work |
+| `tasks\TASK_CARD.template.md` | Task card skeleton with stable TASK-ID, DESIGN-ID, EVENT-ID, concurrency metadata, and completion gate |
+| `designs\DESIGN_CARD.template.md` | Design lifecycle template; only an approved design card may generate an execution card |
 | `reports\HANDOVER.template.md` | Minimal handoff template (6 blocks + block 7 task card update), one file per record |
 | `INDEX.template.md` | Record index (type markers [handoff]/[done]/[dropped], created at initialization; rows are never lost — rows past N move into the archive file) |
 | `LEGACY_ONBOARDING.md` | Legacy project onboarding guide (companion file: lightweight registration + progressive tidying, not part of the mandatory protocol reading path) |
@@ -109,12 +110,16 @@ The skill source package (outside, general-purpose) and the project workspace la
 | Scenario | PowerShell ({SHELL}=powershell) | bash ({SHELL}=bash) |
 |---|---|---|
 | Check whether the workspace root exists | `Test-Path "{WORKSPACE_ROOT}"` | `test -d "$WORKSPACE_ROOT" && echo ok` |
-| Create the management directory | `New-Item -ItemType Directory -Force -Path "{WORKSPACE_ROOT}\{PROJECT_NAME}\tasks","{WORKSPACE_ROOT}\{PROJECT_NAME}\reports","{WORKSPACE_ROOT}\{PROJECT_NAME}\archives\done"` | `mkdir -p "$WORKSPACE_ROOT/$PROJECT_NAME"/{tasks,reports,archives/done}` |
+| Create the management directory and archive index | `New-Item -ItemType Directory -Force -Path "{WORKSPACE_ROOT}\{PROJECT_NAME}\tasks","{WORKSPACE_ROOT}\{PROJECT_NAME}\reports","{WORKSPACE_ROOT}\{PROJECT_NAME}\archives\done"; New-Item -ItemType File -Force -Path "{WORKSPACE_ROOT}\{PROJECT_NAME}\archives\INDEX_archived.md"` | `mkdir -p "$WORKSPACE_ROOT/$PROJECT_NAME"/{tasks,reports,archives/done}; touch "$WORKSPACE_ROOT/$PROJECT_NAME/archives/INDEX_archived.md"` |
 | View the directory structure | `Get-ChildItem -Recurse "{WORKSPACE_ROOT}\{PROJECT_NAME}"` | `ls -R "$WORKSPACE_ROOT/$PROJECT_NAME"` |
 | Run the project (if applicable) | `{RUN_COMMAND}` (per the MAP environment section) | `{RUN_COMMAND}` (per the MAP environment section) |
 | Build the project (if applicable) | `{BUILD_COMMAND}` (per the MAP environment section) | `{BUILD_COMMAND}` (per the MAP environment section) |
 
+| Initialize the archive index | `New-Item -ItemType File -Force -Path "{WORKSPACE_ROOT}\{PROJECT_NAME}\archives\INDEX_archived.md"` | `touch "$WORKSPACE_ROOT/$PROJECT_NAME/archives/INDEX_archived.md"` |
+
 > Environment convention: pick one of the commands per `{PLATFORM}` (win / mac / linux) and `{SHELL}`; never mix platforms. The path separator follows the platform (Windows `\` / POSIX `/`).
+
+> **v1.2.0 protocol boundary**: `SKILL.md` specifies protocol, templates, and optional script generation only; it does not define or enable a default runtime. `TASK-ID`, `EVENT-ID`, and `DESIGN-ID` are stable identifiers. Completion is an explicit trigger and a blocking gate: missing handoff/card/INDEX/STATE evidence, pointer, revision, or hash keeps work active. `archives\INDEX_archived.md` is immutable and append-only; corrections are new pointer/supersession events.
 
 ## 8. Requirements and platform compatibility
 

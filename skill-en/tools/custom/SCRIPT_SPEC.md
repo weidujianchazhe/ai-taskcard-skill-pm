@@ -1,10 +1,11 @@
 # Local script spec master document (SCRIPT_SPEC)
 
 > **Purpose**: at project rollout the AI reads this file through, reads the sub-specs on demand (SPEC_protocol_audit / SPEC_recovery), confirms platform and modules with the user, then generates single-platform local scripts into the project workspace root.
+> **Boundary**: this is a script-generation specification, not a runtime. No watcher, daemon, scheduler, or writer is enabled by installing these Markdown files.
 > **Trigger**: when the user says "set up a local check script", "AI operations keep failing", "I need check/self-healing tools", the AI reads this file and runs the generation flow.
 > **Relation to the skill**: this file is a skill source package spec (cross-platform, pure MD); generated scripts are local assets of the project workspace (single-platform implementation, not in the skill package, travel with the project).
 > **Entry order**: custom\README.md (entry) → this file (master spec) → SPEC_protocol_audit.md / SPEC_recovery.md (sub-specs).
-> **Revision (v1.0.1, 2026-09-09)**: generation granularity defaults to "one feature per script"; added the set·group execution framework with "script layer / execution layer separation" (see the end of section 2, Generation flow).
+> **Revision (v1.2.0, 2026-09-09)**: generation granularity defaults to "one feature per script"; added the set·group execution framework with "script layer / execution layer separation" (see the end of section 2, Generation flow).
 
 ---
 
@@ -15,7 +16,7 @@
 | Capability | What it catches | Protocol anchor it relies on |
 |---|---|---|
 | End-of-work gate | Going through the motions on the four-piece set check, missing pieces | Distilled / Last handoff / ID |
-| Drift detection | Version inconsistency across the three synchronized copies | Version line (v1.0.1) |
+| Drift detection | Version inconsistency across the three synchronized copies | Version line (v1.2.0) |
 | ID audit | Unregistered branch, skipped numbers, collisions, illegal type | Branch numbering registry / XXNNNN |
 | Naming audit | reports naming violations, duplicate names | YYYY-MM-DD_topic_AI-tag |
 | Reference audit | Dangling anchor, INDEX pointing at something that does not exist | Code root path / Last handoff |
@@ -69,6 +70,7 @@
 - **Exit codes**: 0 = all pass; 1 = has [problem] (definite violation); 2 = has [to be verified]; 3 = the script's own error
 - **Output**: print [pass] / [problem] / [to be verified] in sections + "file or line: specific description" + a fix suggestion with each problem; never silent
 - **Read-only by default**: except for write operations explicitly marked in SPEC_recovery, never change files; repair-type output is suggestions only, executed after user confirmation
+- **Protocol evidence**: validate stable TASK-ID/EVENT-ID/DESIGN-ID, revision, exact UTF-8 SHA-256, CAS expectations, conflict-file naming, immutable archive pointers, and the blocking completion gate
 - **Platform self-check**: the script probes the platform at the start (win/mac/linux + available shell); the path separator follows the platform; if no legal runtime environment is detected → exit code 3 and report not applicable
 - **Boundary discipline**: any "semantic judgement" always goes to [to be verified], never disguised as [problem]
 - **Resource restraint**: scripts are lightweight by default — plain text/file checks, no heavy dependencies; on a performance-limited host use incremental/sampled runs (check only the most recent N entries, skip the full git diff) to avoid slowing the management session

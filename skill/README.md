@@ -1,6 +1,6 @@
 # 项目管理AI轻量化接力（使用指南）
 
-> 版本 v1.0.1
+> 版本 v1.2.0
 
 > 这是一份**通用型项目管理技能模板**：任何项目都可以复制本模板建立自己的协同工作区；支持多 AI / 跨平台 / 跨时间 / 跨项目接力工作。
 >
@@ -37,7 +37,7 @@
 ├── reports\             # 工作档案：交接记录/简化总结（每次一篇，沿锚点读；只存项目工作记录）
 ├── archives\            # 归档（只进不出）
 │   ├── done\            # 完成卡归档（初始化即创建，完成型收工移卡目标）
-│   └── INDEX_archived.md  # INDEX 全量归档（首次 INDEX 归档时创建，此前可不存在）
+│   └── INDEX_archived.md  # INDEX 不可变全量归档（初始化即创建）
 └── tools\               # 可选工具区（按需拉动，不进接手路径）
     └── README.md        # 工具区入口（总说明 + 三铁律 + 内置工具表；子规范按需从技能源包拉取）
 ```
@@ -49,12 +49,12 @@
 > **先查重**：确认工作区根后、建目录前，先探测该根下是否已有此项目管理实例；有 → 先归并/确认唯一正本，禁止另起新目录。
 2. **按「工作区文件清单」建立工作区**（不整包复制；两条初始化路径共用本清单，存量接入见 LEGACY_ONBOARDING.md）：
    - **实例化**（模板改名后重填）：`MAP.template.md` → `MAP.md`、`STATE.template.md` → `STATE.md`、`INDEX.template.md` → `INDEX.md`、`REVIEWS.template.md` → `REVIEWS.md`
-   - **原样复制**：`SKILL.md`（协议入口，随工作区走）、`tasks\TASK_CARD.template.md`（格式参考）、`reports\HANDOVER.template.md`（格式参考）、`archives\README.md`、`tools\README.md`
-   - **创建空目录**：`tasks\`、`reports\`、`archives\done\`
+   - **原样复制**：`SKILL.md`（协议入口，随工作区走）、`tasks\TASK_CARD.template.md`（格式参考）、`designs\DESIGN_CARD.template.md`（设计卡格式参考）、`reports\HANDOVER.template.md`（格式参考）、`archives\README.md`、`tools\README.md`
+   - **创建空目录/文件**：`tasks\`、`reports\`、`archives\done\`、`archives\INDEX_archived.md`
    - **不进工作区**（留技能源包，按需拉取）：`README.md`、`BLUEPRINT.md`、`LEGACY_ONBOARDING.md`、`tools\` 各子目录规范（checks / visualize / schedule / report / custom）
 3. 打开 `MAP.md`，替换两类占位符——`[]` 人填项（见下）与 `{}` 运行期变量（`{WORKSPACE_ROOT}` 需向用户确认一次，`{PLATFORM}`/`{SHELL}` 按环境填写）：
    - `[项目名称]`、`[工程路径]`、`[技术栈]`、`[不涉及的模块/边界]`、`[运行命令]`、`[打包命令]`、`[项目特有规则]`、`[技能源包路径]`（缺失补全与版本过时检测用）
-   - 确认规则段三项配置：INDEX 主文件行数 / reports 归档阈值 / AI 定期排查开关
+   - 确认规则段配置：INDEX 主文件行数 / reports 归档阈值 / AI 定期排查开关 / 协作模式（light/standard/coordination）
 4. 在 `tasks\` 登记第一条任务卡（每卡一文件，按工作命名，含人读定位区）
 5. 告知参与 AI：**"协同工作区在 {WORKSPACE_ROOT}\<项目名>\，先读 tasks\ 里对应的任务卡"**
 
@@ -79,7 +79,7 @@
 5. **并发写规则**：写前读 / 写后验 / STATE 条目级写；跨分支冲突不比编号、不以时间戳裁决，留痕交管理者
 6. **覆盖式更新**：任务卡/STATE 永远只留最新，历史归 reports + INDEX；reports 达 MAP「reports 归档阈值」（默认 20）即滚动归档
 7. **档案红线**：reports\ 与 archives\ 禁删禁移（唯一例外 = 收工归档流程，移后同步 INDEX 行指向）；新增文件/路径/分支登记 MAP
-8. **元管理分流**：技能自身事务写 REVIEWS.md，不进 reports/INDEX
+8. **元管理分流**：技能自身事务写 REVIEWS.md，不进 reports/INDEX；人工检查按需、收工门禁在完成前强制、定期排查仅开关开启后运行，门禁失败阻塞完成
 9. **进度锚点**：工作中落点即覆盖写卡上「进度锚点」行——中断沿锚点 + git status 续作，收工沉淀后清「—」
 10. **人读区由 AI 区自动生成**（任务←描述首句、状态←状态字段、下一步←要点①），覆盖时同步重写
 
@@ -92,7 +92,8 @@
 | `SKILL.md` | 技能入口与协议唯一权威源（定位/触发/流程/核心协议/检查清单/查看视图/维护规范/变更保护区） |
 | `MAP.template.md` | 项目地图骨架，复制为 `MAP.md` 后填占位符（固定四段：环境/规则/协议/路径；协议段为 SKILL.md 派生快照） |
 | `STATE.template.md` | 当前状态快照骨架（人读区 3 行 + 进展/阻塞/决策点/时间戳，条目级覆盖式） |
-| `tasks\TASK_CARD.template.md` | 任务卡骨架（人读定位区 3 行 + 编号/状态/描述/要点/代码根路径/涉及/承接/进度锚点/上次交接/已提炼；**卡尾含收工协议速记**——四件套/MAP 登记/档案红线随卡分发），每卡一文件按工作命名 |
+| `tasks\TASK_CARD.template.md` | 任务卡骨架（稳定 TASK-ID、DESIGN-ID、EVENT-ID、并发元数据与收工门禁） |
+| `designs\DESIGN_CARD.template.md` | 设计卡生命周期模板；仅已批准设计卡可生成执行任务卡 |
 | `reports\HANDOVER.template.md` | 最小交接模板（6 块 + 第 7 块任务卡更新），每条记录一个文件 |
 | `INDEX.template.md` | 记录目录（类型标记 [接力]/[完成]/[废弃]，初始化时创建；行永不丢失——超 N 行移入归档文件） |
 | `LEGACY_ONBOARDING.md` | 存量项目接入指南（附带文件：轻量登记 + 渐进整理，不进主协议必读流程） |
@@ -109,7 +110,7 @@
 | 场景 | PowerShell（{SHELL}=powershell） | bash（{SHELL}=bash） |
 |---|---|---|
 | 查看工作区根是否存在 | `Test-Path "{WORKSPACE_ROOT}"` | `test -d "$WORKSPACE_ROOT" && echo ok` |
-| 创建管理目录 | `New-Item -ItemType Directory -Force -Path "{WORKSPACE_ROOT}\{PROJECT_NAME}\tasks","{WORKSPACE_ROOT}\{PROJECT_NAME}\reports","{WORKSPACE_ROOT}\{PROJECT_NAME}\archives\done"` | `mkdir -p "$WORKSPACE_ROOT/$PROJECT_NAME"/{tasks,reports,archives/done}` |
+| 创建管理目录和归档索引 | `New-Item -ItemType Directory -Force -Path "{WORKSPACE_ROOT}\{PROJECT_NAME}\tasks","{WORKSPACE_ROOT}\{PROJECT_NAME}\reports","{WORKSPACE_ROOT}\{PROJECT_NAME}\archives\done"; New-Item -ItemType File -Force -Path "{WORKSPACE_ROOT}\{PROJECT_NAME}\archives\INDEX_archived.md"` | `mkdir -p "$WORKSPACE_ROOT/$PROJECT_NAME"/{tasks,reports,archives/done}; touch "$WORKSPACE_ROOT/$PROJECT_NAME/archives/INDEX_archived.md"` |
 | 查看目录结构 | `Get-ChildItem -Recurse "{WORKSPACE_ROOT}\{PROJECT_NAME}"` | `ls -R "$WORKSPACE_ROOT/$PROJECT_NAME"` |
 | 运行项目（如适用） | `{运行命令}`（按 MAP 环境段） | `{运行命令}`（按 MAP 环境段） |
 | 打包项目（如适用） | `{打包命令}`（按 MAP 环境段） | `{打包命令}`（按 MAP 环境段） |

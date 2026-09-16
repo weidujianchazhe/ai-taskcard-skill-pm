@@ -32,8 +32,8 @@
 - [ ] Completed cards moved to archives\done\ (completion-type end of work does not delete the card; keep the record)
 - [ ] Decision points registered (STATE decision points / task card Key points)
 - [ ] Legacy projects: whether the historical gaps marked "to be tidied on demand" are reasonable
-- [ ] MAP Path registry matches the actual directories (no dead paths; corresponds to audit Checkpoint 7) — v1.0.1
-- [ ] No files deleted/moved in reports\ and archives\ (archive red line; when deleted, the INDEX pointer dangles → discoverable by Checkpoint 4 / Recovery point 3) — v1.0.1
+- [ ] MAP Path registry matches the actual directories (no dead paths; corresponds to audit Checkpoint 7) — v1.2.0
+- [ ] No files deleted/moved in reports\ and archives\ (archive red line; when deleted, the INDEX pointer dangles → discoverable by Checkpoint 4 / Recovery point 3) — v1.2.0
 
 ## 2. Three-state disposition loop
 

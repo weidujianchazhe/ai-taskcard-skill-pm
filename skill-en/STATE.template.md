@@ -1,6 +1,6 @@
 # [PROJECT_NAME] · Current State (STATE)
 
-> Version v1.0.1
+> Version v1.2.0
 
 > Overwrite-style: keep only the latest forever, overwrite old content when modifying, never accumulate history. Ownership: updated by the AI currently responsible for the task card at end-of-work.
 > Last updated: `YYYY-MM-DD HH:MM`
@@ -14,6 +14,13 @@ Directory guide: current → STATE · tasks · archive → reports · index → 
 ## Current progress
 
 - [one-line latest status (what was last completed / where it stands now; when parallel, the last one to finish overwrites this line)]
+
+## Concurrency metadata
+
+- owner: [TASK-ID / AI identity]
+- revision: [integer]
+- NORMALIZED-SHA256: [hash]
+- write proof: [atomic rename / CAS; conflict path or `—`]
 
 ## Tasks in progress
 
@@ -34,4 +41,4 @@ Directory guide: current → STATE · tasks · archive → reports · index → 
 
 ---
 
-> Update rules: update this file at end-of-work, **entry-level write** — read the latest first, update only the entries of your own task and the human-read zone, leave every other entry untouched (never blind-overwrite the whole file in a parallel scenario); the human-read zone is auto-generated from the AI zone — project positioning is fixed, **in-progress count ← card count in tasks\** (local list, constant cost), recently completed ← the summary of the latest [done] row, directory guide is fixed — all rewritten in sync on overwrite; **completed/dropped totals belong to the INDEX archive file (archives\INDEX_archived.md) and are not maintained here** — counting cost never grows with project size; history goes to reports\ + INDEX, this file never accumulates.
+> Update rules: update this file at end-of-work, **entry-level write** — read the latest first, update only the entries of your own task and the human-read zone, leave every other entry untouched; a failed CAS creates a conflict file and blocks completion. The human-read zone is auto-generated from the AI zone; history goes to reports\ + INDEX, this file never accumulates.

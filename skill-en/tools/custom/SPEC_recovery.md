@@ -1,6 +1,7 @@
 # Self-healing aids script spec (SPEC_recovery)
 
 > **Purpose**: generate "recovery aids" local scripts. Read-only by default + output "drafts/suggestions"; any write operation (persisting a rebuilt file, etc.) must have user confirmation before it runs.
+> **Proof requirement (v1.2.0)**: recovery output records raw and normalized SHA-256, UTF-8 encoding/BOM, source pointer/revision, and normalization algorithm. Raw bytes remain authoritative; unknown proof is `data pending`, never fabricated.
 > **Trigger**: when data files are lost / STATE is corrupt / anchors are broken / the version is stale / history must be inspected, the AI reads this file to generate a script or directly executes its logic.
 > **Generation granularity**: each Recovery point = one independent script (recover_<recovery_point>_<topic>.ps1, default one feature per script); whole-set/group execution is orchestrated by the runner (see SCRIPT_SPEC "generation granularity and execution framework").
 

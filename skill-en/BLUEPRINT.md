@@ -1,5 +1,7 @@
 # Design Blueprint (BLUEPRINT)
 
+> Version v1.2.0
+
 > This file IS the authoritative quick-reference of the design blueprint (the 6 points below cover the core mechanisms and are valid inside the package). The HTML version `project-management-lite-blueprint.html` is a supplementary design document outside the package — this skill package is pure Markdown and does not carry the HTML; a publisher only needs to place it somewhere visible outside the package (e.g. the repository root), and its absence does not affect operation.
 
 ## Design points (quick reference)

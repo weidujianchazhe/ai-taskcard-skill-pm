@@ -8,6 +8,10 @@
 
 ## Checkpoint 1: end-of-work gate (four-piece set authenticity)
 
+### v1.2.0 evidence gate
+
+Before returning a completion result, verify stable `TASK-ID`, `EVENT-ID`, and (when applicable) `DESIGN-ID`; the four-piece set; active-to-canonical archive pointers; monotonic revision; exact UTF-8 SHA-256; and a successful CAS/atomic-write verification. Missing or uncertain evidence is blocking, not a pass. A static audit must never write a runtime or silently resolve a conflict. (four-piece set authenticity)
+
 **Purpose**: catch going through the motions on the "End-of-work check (4/4)" tick.
 **Input**: the most recent handoff reports (or one the user specifies).
 **Logic**:

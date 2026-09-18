@@ -1,6 +1,6 @@
 # [PROJECT_NAME] · Record Index (INDEX)
 
-> Version v1.2.0
+> Version v1.2.1
 
 > **Type markers**: `[handoff]` chain node (has a next step) — takeover reads along it, current relevant work context / `[done]` completed — takeover does not read it, only review/archiving does / `[dropped]` dropped requirement — do not read, leave a trace so it is not accidentally redone later (**dropping is decided by the manager; an AI never drops on its own — it only leaves the trace, never executes**).
 > **Confidence label**: history that came from a session summary (legacy project onboarding) is marked "session summary"; formal work records are marked "formal".
@@ -8,6 +8,7 @@
 > **Immutable archive mechanism**: `archives\INDEX_archived.md` is created at initialization and is the canonical, append-only full index. The main file keeps only the most recent N rows (N configured in MAP, default 20); each end-of-work appends an immutable row to the archive and atomically updates the bounded main file. Existing archive rows are never edited, deleted, or reordered; corrections are new superseding/pointer events. Row-count annotation and adjustment wording are in SKILL.md section 6.
 > **Daily reading**: a taking-over AI reads only the N rows of the main file by default; if that is not enough, or for the full history → the archive file (the single full index).
 
+> `TASK-ID`, `EVENT-ID` and `DESIGN-ID` are the stable identities; legacy `XXNNNN` is only a compatibility business category number and is no longer the unique identity. An EVENT-ID collision must be regenerated and traced.
 | ID | Date | Type | Topic | AI | Handoff file |
 |---|---|---|---|---|---|
 | EVT-YYYYMMDD-XXXXXXXX | YYYY-MM-DD | [handoff] | [ONE_LINE_SUMMARY] | {PLATFORM}-{AI_NAME}-{SHORT_CODE} | reports\xxx.md |

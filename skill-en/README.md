@@ -1,6 +1,6 @@
 # AI-Relay Project Management Lite (user guide)
 
-> Version v1.2.0
+> Version v1.2.1
 
 > This is a **general-purpose project management skill template**: any project can copy this template to build its own collaborative workspace; it supports multi-AI / cross-platform / cross-time / cross-project relay work.
 >
@@ -54,7 +54,7 @@ The skill source package (outside, general-purpose) and the project workspace la
    - **Not into the workspace** (stay in the skill source package, pulled on demand): `README.md`, `BLUEPRINT.md`, `LEGACY_ONBOARDING.md`, the tools\ sub-specs (checks / visualize / schedule / report / custom)
 3. Open `MAP.md` and replace the two kinds of placeholder — the `[]` human-filled items (below) and the `{}` runtime variables (`{WORKSPACE_ROOT}` is confirmed once with the user; `{PLATFORM}`/`{SHELL}` are filled per environment):
    - `[PROJECT_NAME]`, `[CODE_PATH]`, `[TECH_STACK]`, `[OUT_OF_SCOPE_MODULES/BOUNDARIES]`, `[RUN_COMMAND]`, `[BUILD_COMMAND]`, `[PROJECT_RULE]`, `[SKILL_SOURCE_PATH]` (used by gap filling and outdated-version detection)
-   - Confirm the three settings in the rules section: INDEX main-file row count / reports archive threshold / periodic AI audit switch
+   - Confirm the rules-section configuration: INDEX main-file row count / STATE character limit / reports archive threshold / periodic AI audit switch / collaboration mode (light/standard/coordination)
 4. Register the first task card under `tasks\` (one file per card, named after the work, with a human-read locator block)
 5. Tell the participating AIs: **"the collaborative workspace is at {WORKSPACE_ROOT}\<project-name>\; read the matching task card under tasks\ first"**
 
@@ -77,7 +77,7 @@ The skill source package (outside, general-purpose) and the project workspace la
 3. **Minimal handoff**: 6 blocks + block 7 "Task card update" (mandatory when a matching task card exists); when the project uses git, every "Changes" item carries a commit hash
 4. **Naming and numbering**: reports `YYYY-MM-DD_topic_AI-tag.md` (the AI tag contains a short code; list the directory before writing to avoid duplicate names); ID XXNNNN — register a branch in MAP first, increase digits by numeric value, and on a collision add +1 with a trace
 5. **Concurrent-write rules**: read-before-write / verify-after-write / STATE entry-level write; across branches do not compare IDs and do not decide by timestamp — leave a trace and hand it to the manager
-6. **Overwrite-style update**: the task card/STATE always hold only the latest, and history goes to reports + INDEX; when reports reach the MAP "reports archive threshold" (default 20) they are rolled into the archive
+6. **Overwrite-style update**: the task card/STATE always hold only the latest, and history goes to reports + INDEX; when reports reach the MAP "reports archive threshold" (default 20) they are rolled into the archive; when STATE's word count reaches the MAP "STATE character limit" (default 15k), move history sections into reports\ and keep only the current snapshot
 7. **Archive red line**: reports\ and archives\ must not be deleted or moved (the only exception is the end-of-work archiving flow, repointing the INDEX row after the move); register new files/paths/branches in MAP
 8. **Meta-management routing**: the skill's own affairs go to REVIEWS.md, never into reports/INDEX
 9. **Progress anchor**: while working, overwrite at each landing point into the card's "Progress anchor" line — after an interruption resume along the anchor + `git status`, and clear it to "—" once distilled at end-of-work
@@ -91,14 +91,14 @@ The skill source package (outside, general-purpose) and the project workspace la
 |---|---|
 | `SKILL.md` | Skill entry and single source of truth for the protocol (positioning/triggers/workflow/core protocol/checklists/viewing view/maintenance rules/change-protection zone) |
 | `MAP.template.md` | Project map skeleton; copy to `MAP.md` and fill the placeholders (fixed four sections: environment/rules/protocol/paths; the protocol section is a derived snapshot of SKILL.md) |
-| `STATE.template.md` | Current-state snapshot skeleton (human-read zone 3 lines + progress/blockers/decision points/timestamp, entry-level overwrite) |
+| `STATE.template.md` | Current-state snapshot skeleton (human-read zone 3 lines + progress/blockers/decision points/timestamp, entry-level overwrite; the character limit is in the MAP "STATE character limit", default 15k — when exceeded, move history sections into `reports\`) |
 | `tasks\TASK_CARD.template.md` | Task card skeleton with stable TASK-ID, DESIGN-ID, EVENT-ID, concurrency metadata, and completion gate |
 | `designs\DESIGN_CARD.template.md` | Design lifecycle template; only an approved design card may generate an execution card |
 | `reports\HANDOVER.template.md` | Minimal handoff template (6 blocks + block 7 task card update), one file per record |
 | `INDEX.template.md` | Record index (type markers [handoff]/[done]/[dropped], created at initialization; rows are never lost — rows past N move into the archive file) |
 | `LEGACY_ONBOARDING.md` | Legacy project onboarding guide (companion file: lightweight registration + progressive tidying, not part of the mandatory protocol reading path) |
 | `REVIEWS.template.md` | Skill retrospective template (meta-management: blocker → root cause → suggestion → disposition, four one-line sections; **instantiated as the workspace REVIEWS.md at initialization**) |
-| `BLUEPRINT.md` | Design blueprint (the 6 points are the authoritative quick-reference; design points only, it carries no protocol and takes no part in version syncing; the HTML edition is a supplementary document outside the package) |
+| `BLUEPRINT.md` | Design blueprint (the 12 points are the authoritative quick-reference; design points only, it carries no protocol and takes no part in version syncing; the HTML edition is a supplementary document outside the package) |
 | `archives\README.md` | Archive notes (in only, never out; prevents accidental deletion) |
 | `tools\` | Optional tools area (the checks/visualize/schedule/report/custom specs stay in the skill source package and are pulled on demand); adding tools on demand follows the three iron rules |
 
@@ -119,7 +119,7 @@ The skill source package (outside, general-purpose) and the project workspace la
 
 > Environment convention: pick one of the commands per `{PLATFORM}` (win / mac / linux) and `{SHELL}`; never mix platforms. The path separator follows the platform (Windows `\` / POSIX `/`).
 
-> **v1.2.0 protocol boundary**: `SKILL.md` specifies protocol, templates, and optional script generation only; it does not define or enable a default runtime. `TASK-ID`, `EVENT-ID`, and `DESIGN-ID` are stable identifiers. Completion is an explicit trigger and a blocking gate: missing handoff/card/INDEX/STATE evidence, pointer, revision, or hash keeps work active. `archives\INDEX_archived.md` is immutable and append-only; corrections are new pointer/supersession events.
+> **v1.2.1 protocol boundary**: `SKILL.md` specifies protocol, templates, and optional script generation only; it does not define or enable a default runtime. `TASK-ID`, `EVENT-ID`, and `DESIGN-ID` are stable identifiers. Completion is an explicit trigger and a blocking gate: missing handoff/card/INDEX/STATE evidence, pointer, revision, or hash keeps work active. `archives\INDEX_archived.md` is immutable and append-only; corrections are new pointer/supersession events. Two ceiling devices (INDEX row count and STATE character limit) bound the default takeover reading cost.
 
 ## 8. Requirements and platform compatibility
 

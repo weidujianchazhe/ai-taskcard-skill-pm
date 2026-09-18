@@ -3,7 +3,7 @@ name: AI-Relay-project-management-lite
 description: General-purpose project management skill: task-card-driven lightweight takeover, overwrite-style state, end-of-work routing handoff, INDEX type markers, supporting multi-AI / cross-platform / cross-time / cross-project relay. A project may be complex and heavy while the taking-over AI reads only what it needs. Use when starting a new project, taking over a long-idle project, or onboarding a legacy project.
 author: 如天之星
 license: MIT
-version: 1.2.0
+version: 1.2.1
 ---
 
 # AI-Relay Project Management Lite (skill entry)
@@ -11,7 +11,7 @@ version: 1.2.0
 > **Positioning**: a general-purpose project management skill that serves no particular project. Core philosophy — a project may be complex and heavy, the taking-over AI reads only what it needs: the burden does not grow with project size.
 > **Essential goal (across obstacles)**: cross the obstacles of platform, AI, time and project, so the taking-over AI understands the work at a lower reading cost and with fewer errors.
 > **Legacy project (already under way, no management structure)**: read `LEGACY_ONBOARDING.md` first (lightweight registration + progressive tidying, no deep historical reorganization).
-> **Language edition**: this is the English edition, mirroring the Chinese package v1.2.0. The two editions are structurally identical; the Chinese↔English data-contract mapping is in section 3.4.
+> **Language edition**: this is the English edition, mirroring the Chinese package v1.2.1. The two editions are structurally identical; the Chinese↔English data-contract mapping is in section 3.4.
 
 ---
 
@@ -86,26 +86,26 @@ The skill source package is authoritative. Recovery records candidate source pat
 
 > **Chinese↔English data-contract mapping** (for a cross-language takeover, or when upgrading a workspace initialized with the Chinese package — the field names, markers and block titles below are the data contract, not prose):
 
-| Chinese (v1.2.0) | English | Note |
+| Chinese (v1.2.1) | English | Note |
 |---|---|---|
 | 编号 | ID | |
 | 状态 | Status | |
 | 描述 | Description | |
 | 要点 | Key points | |
-| 代码根路径 | Code root path | renamed from 工程锚点 in v1.2.0 |
+| 代码根路径 | Code root path | renamed from 工程锚点 in v1.2.1 |
 | 涉及 | Files involved | |
 | 承接 | Claimed by | |
 | 进度锚点 | Progress anchor | |
 | 上次交接 | Last handoff | |
-| 已提炼 | Distilled | renamed from 最后折叠 in v1.2.0 |
+| 已提炼 | Distilled | renamed from 最后折叠 in v1.2.1 |
 | [接力] / [完成] / [废弃] | [handoff] / [done] / [dropped] | INDEX type markers |
 | 进行中 / 待认领 / 已阻塞 | In progress / Unclaimed / Blocked | task card status values |
 | 本次需求 / 本次涉及工程信息 / 改动点 / 验证结果 / 数据影响 / 下一步 | This request / Code context for this task / Changes / Verification / Data impact / Next step | the 6 handoff blocks |
 | 任务卡更新（第 7 块） | Task card update (block 7) | |
-| 技能源包 · 提炼回卡 · 人读区 + AI 区 · 项目地图（MAP） · 先查重 · 未建卡的工作 / 已建卡的工作 | skill source package · distill back to card · human-read zone + AI zone · project map (MAP) · dedup check first · work with no card yet / work already on a card | v1.2.0 terminology cleanup (legacy Chinese names → current) |
-| 锚点组 · 派生视图 / 机械重写 · 内容级并发安全 · 树链式 | (merged into the "Last handoff" description) · (the human-read zone is auto-generated from the AI zone) · concurrent-write rules · division by module/branch | v1.2.0 terminology cleanup (continued; some legacy terms were removed rather than renamed) |
+| 技能源包 · 提炼回卡 · 人读区 + AI 区 · 项目地图（MAP） · 先查重 · 未建卡的工作 / 已建卡的工作 | skill source package · distill back to card · human-read zone + AI zone · project map (MAP) · dedup check first · work with no card yet / work already on a card | v1.2.1 terminology cleanup (legacy Chinese names → current) |
+| 锚点组 · 派生视图 / 机械重写 · 内容级并发安全 · 树链式 | (merged into the "Last handoff" description) · (the human-read zone is auto-generated from the AI zone) · concurrent-write rules · division by module/branch | v1.2.1 terminology cleanup (continued; some legacy terms were removed rather than renamed) |
 
-### 3.5 P0/P1 protocol strengthening (v1.2.0)
+### 3.5 P0/P1 protocol strengthening (v1.2.1)
 
 This package defines a **protocol, template, and local-script-generation specification**. It does not install, imply, or change a default runtime, daemon, watcher, scheduler, database, or automatic writer. Generated scripts are optional, local, read-only by default, and must follow `tools\custom\SCRIPT_SPEC.md`.
 
@@ -148,7 +148,7 @@ Recovery must retain both raw and normalized evidence. For each recovered artifa
 - [ ] Probed {WORKSPACE_ROOT} first for an existing management instance of this project (if there is one → merge / confirm the single original first; starting a second directory is forbidden)
 - [ ] The workspace root {WORKSPACE_ROOT} has been confirmed with the user (default or custom)
 - [ ] The management directory has been created: MAP / STATE / REVIEWS / tasks\ / reports\ / INDEX.md / archives\ (**including done\ and `INDEX_archived.md`**) / tools\
-- [ ] Every MAP placeholder has been replaced with the project's real information (**including [SKILL_SOURCE_PATH], [BACKUP_METHOD], [DECISION_MAKER]**; the rules-section settings are confirmed: INDEX main-file row count / reports archive threshold / periodic AI audit switch)
+- [ ] Every MAP placeholder has been replaced with the project's real information (**including [SKILL_SOURCE_PATH], [BACKUP_METHOD], [DECISION_MAKER]**; the rules-section settings are confirmed: INDEX main-file row count / STATE character limit / reports archive threshold / periodic AI audit switch / collaboration mode)
 - [ ] The first task card has been created (with a human-read locator block + AI field block)
 - [ ] Handoff template block 7 "Task card update" is ready
 - [ ] INDEX.md has been initialized (header + type-marker explanation)
@@ -201,7 +201,7 @@ Recovery must retain both raw and normalized evidence. For each recovered artifa
 4. **Three cost-attribution principles (snapshot / ledger / layering)**:
    - **Constant write path**: every field on the end-of-work path must be **mechanically derivable** (a local list, a single-row lookup, taking the first sentence — fillable correctly with your eyes closed); any field that needs a full inventory, a global scan or a cross-directory count is forbidden from entering the end-of-work flow — a field that is hard to fill in correctly will eventually be filled in wrongly, and a wrong number is worse than no number
    - **Snapshot vs ledger division of labour**: STATE = the current snapshot, the INDEX archive file = the full ledger; cumulative statistics (completed/dropped totals and other "period-end balances") belong to the ledger and are **queried on demand** — never move them back to high-frequency maintenance (a counter updated at every end-of-work); a change may move cost from a high-frequency path to a low-frequency one, **never the reverse**
-   - **Main-file capacity is a ceiling**: the INDEX main-file row count N (default 20) is the **ceiling device for the default reading cost of a taking-over AI, not a capacity to be expanded** — it must not be raised, nor may the main file be made to carry more history, on the grounds of "more complete / more comprehensive / seeing more" (going from 20 rows to 50/100 looks like a better recent view but is in fact a tax on every taking-over AI); wanting more history → read the archive file on demand, and **the layered reading structure (main file = recent / archive = full) must never be merged**
+   - **Two ceiling devices**: the INDEX main-file row count N (default 20) and the STATE character limit (default 15k) are **two ceiling devices for the default reading cost of a taking-over AI, not capacities to be expanded** — neither must be raised, nor may the main file be made to carry more history, on the grounds of "more complete / more comprehensive / seeing more" (going from 20 rows to 50/100 looks like a better recent view but is in fact a tax on every taking-over AI); when the limit is exceeded, move history sections into reports\ per the overwrite-style discipline; wanting more history → read the archive file on demand, and **the layered reading structure (main file = recent / archive = full) must never be merged**
 5. **Authoritative-source flow**: change SKILL.md first (the authoritative source) → sync the README/MAP derived snapshots → versions consistent (see section 7)
 6. **Retrospective before improvement**: log the motivation and the plan for a change in REVIEWS.md before landing it
 
@@ -214,7 +214,7 @@ Recovery must retain both raw and normalized evidence. For each recovered artifa
 3. **Distill back to card**: every reports file is read at most once with its increments written back to the card — which also serves as the disaster-tolerance layer against accidental deletion (what was read has already gone back to the card)
 4. **Archive red line**: an AI never deletes or moves anything under reports\ or archives\ (the only exception is the end-of-work archiving flow, repointing the INDEX row after the move)
 5. **Data honesty boundary**: whatever cannot be recovered is marked "data pending"; faking is forbidden
-6. **Audit/recovery dependency list**: the 6+1 handoff block titles, the task card's "Last handoff", "Distilled", "Code root path", "Files involved", the ID rules (XXNNNN / numeric increase / collision retry), the MAP branch numbering registry and its three settings (INDEX main-file row count / reports archive threshold / periodic AI audit switch) — these are the **functional interfaces** of Checkpoints 1-7 and Recovery points 1-5, not restatements of the protocol; the slimming knife does not fall here
+6. **Audit/recovery dependency list**: the 6+1 handoff block titles, the task card's "Last handoff", "Distilled", "Code root path", "Files involved", stable IDs (TASK-ID / EVENT-ID / DESIGN-ID), the MAP branch numbering registry and its configuration (INDEX main-file row count / STATE character limit / reports archive threshold / periodic AI audit switch / collaboration mode) — these are the **functional interfaces** of Checkpoints 1-7 and Recovery points 1-5, not restatements of the protocol; the slimming knife does not fall here
 7. **Consistency between the version's authoritative source and the derived snapshots** (the basis of Checkpoint 6)
 
 ### C. Record and recovery safeguards (runtime, kept alongside any change)
@@ -232,7 +232,7 @@ Recovery must retain both raw and normalized evidence. For each recovered artifa
 
 | What it looks like | What it actually carries |
 |---|---|
-| MAP rules-section three settings (about 3 lines) | The operating basis of three features — INDEX truncation, reports archiving, the checks audit switch — plus the reconciliation input of Recovery point 5 |
+| MAP rules-section configuration rows (INDEX row count / STATE character limit / reports threshold / audit switch / collaboration mode) | The operating basis of multiple features — INDEX truncation, STATE size cap, reports archiving, the checks audit switch, mode gating — plus the reconciliation input of Recovery point 5 |
 | INDEX header "row-count annotation wording" (a 1-line pointer) | The source of Recovery point 5's behaviour ("prompt that it can be changed + point the breakpoint at the archive") — the wording original lives in section 6 of SKILL |
 | Task card "Last handoff" field (1 line) | The takeover-chain entry + Checkpoint 5's anchor-existence check + the object of Recovery point 3's broken-link repair |
 | Handoff 6+1 block titles (7 lines) | The block-by-block check target of Checkpoint 1's end-of-work gate |
@@ -266,7 +266,7 @@ Recovery must retain both raw and normalized evidence. For each recovered artifa
 
 > **ID rules are a reconciliation interface, not a formatting preference**: changing the ID format / increase rule / registration requirement means changing the entire logical basis of Checkpoint 4 and the way the [handoff] chain continues (see B.6) — it must first pass the A.2 cross-impact check, grepping the whole package for the sync set before anything is touched.
 
-> The complete design blueprint is in `BLUEPRINT.md` (its 6 points are the authoritative quick-reference); the HTML edition `project-management-lite-blueprint.html` is a supplementary design document outside the package (this package is pure Markdown and does not carry it; a publisher only needs to place it outside the package).
+> The complete design blueprint is in `BLUEPRINT.md` (its 12 points are the authoritative quick-reference); the HTML edition `project-management-lite-blueprint.html` is a supplementary design document outside the package (this package is pure Markdown and does not carry it; a publisher only needs to place it outside the package).
 
 ### 3.5 Stable IDs, lifecycle, roles, and modes
 

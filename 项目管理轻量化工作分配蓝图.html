@@ -38,9 +38,10 @@
   <div class="hero" data-page-node-id="CYFGCdaJ4rlqFUEkc22CHS">
     <h1 data-page-node-id="I6EFkXsCe1noMzEOobHSM1">项目管理AI轻量化接力 · 技能设计蓝图</h1>
     <p data-page-node-id="tgGydDIj594NGCEJj8wAtZ">通用型「跨阻碍」项目管理技能：多 AI / 跨平台 / 跨时间 / 跨项目 · 任务卡驱动（精准到达，不靠猜）· 按需读取（项目再大，任务只读所需）· 人读区 + AI 区（人读摘要 + AI 工作坐标）</p>
-    <p style="margin-top:6px;font-size:12.5px;color:#6B7280;" data-page-node-id="3t9LOSiW5h78sH9x71lF4C">作者：如天之星 · 许可证：MIT · 版本 v1.0.1（与技能包同步）</p>
+    <p style="margin-top:6px;font-size:12.5px;color:#6B7280;" data-page-node-id="3t9LOSiW5h78sH9x71lF4C">作者：如天之星 · 许可证：MIT · 版本 v1.2.1（与技能包同步）</p>
     <div style="margin-top:10px;" data-page-node-id="SsL7C3lFvd072dbiYEofzv">
       <span class="badge b-blue" data-page-node-id="FUWpaouTxf21UHeCPOTatu">按模块/分支分工 · 任务卡驱动 · 覆盖式更新 · 人读区 + AI 区</span>
+      <span class="badge b-green">稳定标识 · 设计门禁 · 三模式 · 单写者 · 封顶装置</span>
     </div>
   </div>
 
@@ -96,7 +97,7 @@
   </div>
 
   <div class="section" data-page-node-id="DMHwOK2qDtL1HPmuB8G4Dj">
-    <h2 data-page-node-id="el1HID3GTaYp3wDiLRVov8">三、设计要点（六个模块 + 附带文件）</h2>
+    <h2 data-page-node-id="el1HID3GTaYp3wDiLRVov8">三、设计要点（六模块 + v1.2 扩展机制 + 附带文件）</h2>
 
     <h3 data-page-node-id="WDjVJB3d912N35Saj2svKe">模块 1 · 技能入口层</h3>
     <ul data-page-node-id="Sj56AiFX0leBbA6ynVySAq">
@@ -111,6 +112,10 @@
       <li data-page-node-id="FzQ1owGJUegkICYJ3DgGb1"><b data-page-node-id="PBMoUiFEsCcXe5f0VvQwvg">工程路径由用户提供</b>（代码目录）；管理目录统一在 {WORKSPACE_ROOT}\&lt;项目名&gt;\（物理隔离，不混入源码树）。</li>
       <li data-page-node-id="5E2r8Bcukouj4VHXIC5RwO"><b data-page-node-id="QjjoJdg0lTzd3pJVQtURqT">MAP 环境段「[技能源包路径]」占位符</b>：初始化时登记技能源包位置（未登记填「—」）；版本漂移检测与恢复点 4 以此为输入。同段另有「[备份方式]」（git / 定期复制 / 无——源包容灾兜底登记）与「[裁决者]」（跨分支冲突、REVIEWS 处置、元事件提级的最终决定人）两个占位符。</li>
       <li data-page-node-id="vFIXcTGQAwWzMdBorSYJDX">双平台命令示例 + 占位符约定：<code data-page-node-id="S4vABlcXFOQ9AS2RBo8mjE">{}</code> = 运行期变量（AI 求值/用户确认），<code data-page-node-id="izdmmHJFfOUhdlspGyfqxb">[]</code> = 项目信息（人填）。</li>
+      <li><b>INDEX 主文件行数</b>（默认 20）：近期指针行数上限——接手 AI 阅读成本封顶装置，不是可扩容量；超限按覆盖式纪律移入 archives\，分层读取结构不得合并。</li>
+      <li><b>STATE 字数上限</b>（v1.2.1，默认 15k）：STATE.md 字数封顶——超限时把已完成/已归档历史段移入 reports\，只留当前快照与活跃条目；不得以「更完整」为由调大上限（容量是封顶装置，不是可扩容量）。</li>
+      <li><b>协作模式</b>（v1.2.0）：<code>light</code> / <code>standard</code> / <code>coordination</code>——各自的文件集、角色与检查、升级路径；升级即扩集，历史不回写。</li>
+      <li><b>ID 注册与单写者元数据</b>（v1.2.0）：TASK-ID / EVENT-ID / DESIGN-ID 创建后不可变；当前 owner、revision、NORMALIZED-SHA256、写入方式登记于任务卡或冲突文件。</li>
     </ul>
 
     <h3 data-page-node-id="3I4GzvbG2bclAQCJPatcR6">模块 3 · 协作协议层</h3>
@@ -131,7 +136,7 @@
       <li data-page-node-id="KJG1vA4ltPD8RBUfHKtLZD"><b data-page-node-id="GrPFq9D1Kkjyj55uHXRbCo">INDEX 类型标记</b>：[接力]/[完成]/[废弃]——接手沿 [接力] 链走，完成/废弃不污染当前判断；废弃留痕（一行主题+原因）防未来误做。</li>
       <li data-page-node-id="9nOHlprWxoEiLGfSDxCgej"><b data-page-node-id="ygqZhKyGijonXNxB3nylRZ">膨胀轻管控</b>：只守 MAP 精简外链 + tasks\ 只留活跃；其余靠按需读取吸收。</li>
       <li data-page-node-id="MLOxZA1R1FeRfxLmkG6dNe"><b data-page-node-id="dSAOqk3j2dPOLmb7VvWwzY">命名统一</b>：MAP / STATE / tasks / reports / INDEX——名字即职能。</li>
-      <li data-page-node-id="NrVji2QAa90mTN6RDAFAHn"><b data-page-node-id="h8mJhsWeobfmpkFWO0Mn78">并发写规则</b>：写前读（覆盖写 STATE/任务卡、追加写 INDEX 前先读最新）· 写后验（写后读回确认落盘）· STATE 条目级写（并行收工各自更新自己条目，禁整文件盲覆盖）· 冲突裁决（不同字段合并、同字段仅在同分支内按编号数字大覆盖小；<b data-page-node-id="CF2zTGHN6IVzCiq1IXho5U">跨分支冲突不以时间戳裁决</b>——跨平台时钟不可信，双方 reports 留痕交管理者裁决；编号递增 + 时间戳不倒退为正常，倒序则时间戳可疑）· <b data-page-node-id="2die22ADjYS54OV0oOhDDB">撞号重试</b>（写后验发现同编号 → 后写者 +1 重写本行并留痕）。</li>
+      <li data-page-node-id="NrVji2QAa90mTN6RDAFAHn"><b data-page-node-id="h8mJhsWeobfmpkFWO0Mn78">并发写与一致性</b>：写前读（覆盖写 STATE/任务卡、追加写 INDEX 前先读最新 revision/hash）· 优先<b>原子写</b>（临时文件 + atomic rename）· 不具备原子 rename 时使用<b>CAS（compare-and-swap）</b>（提交前再次比对 revision/hash）· 写后验（重读并核对 revision/hash）· <b>单写者责任</b>（每个文件同一时刻只能有一个声明的 owner，其他 AI 只能生成<b>冲突文件</b> <code>CONFLICT_*.md</code>，不得覆盖）· STATE 条目级写（只更新自己任务条目 + 人读区，其余原样保留，禁整文件盲覆盖）· 冲突交管理者裁决，时间戳仅辅证（<b data-page-node-id="CF2zTGHN6IVzCiq1IXho5U">跨分支冲突不以时间戳裁决</b>——跨平台时钟不可信，伪造时间戳无收益）· <b data-page-node-id="2die22ADjYS54OV0oOhDDB">撞号重试</b>（写后验发现同编号 → 后写者 +1 重写并留痕）。</li>
       <li data-page-node-id="IojjXaGTiCjcq87g0vLWPL"><b data-page-node-id="LHUs7uiXdNIPFCawX4ffYh">缺失补全</b>：技能源包为权威源——项目工作区技能文件缺失或过时（源包版本更高）→ 从源包复制模板实例化重填（源包路径登记于 MAP 环境段「[技能源包路径]」）；数据文件（任务卡/reports）丢失从 INDEX/reports 恢复，INDEX 也丢了 → 标「数据待补」，不伪造；任何恢复动作顺手记一行 REVIEWS.md 阻碍点（元事件采集，不进 reports\）。</li>
       <li data-page-node-id="XNLa3x5fUxdGraBOJjTsvU"><b>档案红线</b>：禁止删除/移动 reports\ 与 archives\ 下任何文件——唯一例外 = 收工归档流程（超阈值滚动归档、完成移卡），移后必须同步 INDEX 对应行指向；<b>改动记录三层</b>：MAP 记结构（新路径/新分支，分支登记有检查点 4 兜底）、reports 记摘要（工程有 git 时「改动点」每条附 commit hash——精确追溯锚点，需要完整 diff 时 git show 即得）、INDEX 记指针行（双写永不丢）。</li>
       <li><b>变更保护区（SKILL.md 第八节）</b>：技能包更新/瘦身/简化/合并/字段改名的硬性门禁——功能零损失（只减重复副本不减唯一正本）· 交叉影响检查（先查检查点/恢复点/模板对被改内容的引用，改名先列全包同步清单，局部简化若断掉与检查/恢复/交接功能的配合一律不做）· 接手成本不升（接手路径文件只许变薄不许净增）· <b>成本归属三原则</b>（写路径恒定：收工字段必须可机械派生，禁止全量盘点型字段；快照与总账分工：累计统计归 INDEX 归档按需查询，成本只许高频→低频移动不许反向；主文件容量即封顶：INDEX 主文件行数 N 是阅读成本封顶装置不是可扩容量，禁止以"更完善"为由扩行，分层读取不得合并）· 承重结构保留（指针链 / INDEX 双写 / 提炼回卡 / 审计依赖字段清单）· <b>环环相扣警示</b>（看似几行的协议常是多功能交汇节点——改动前过"六问"自检：谁在消费它/有无等价路径/成本是否上升，宁小勿断）· <b>冲突即弹窗</b>（AI 发现改动与门禁冲突必须主动提醒用户，未经确认不得执行，不静默服从也不静默放行）· <b>对账思想</b>（文档层不做实时监督——监督归脚本层，文档层做到"事后必留痕、多账互证，不守规矩必留痕"；裁决规则不得给伪造留收益——旧版"时间戳后写为准"即作弊有奖漏洞，已改为仅辅证+管理者裁决；时间/编号/身份/凭证四类对账锚点——编号规则 XXNNNN 是检查点 4 的逻辑依据与对账接口，非格式偏好，改动须过交叉影响检查）。</li>
@@ -162,6 +167,41 @@
     <ul data-page-node-id="lx9sISsErlZEMjVmtmrdCO">
       <li data-page-node-id="CxeceyR0nEvuzF3nDQwYbu">阻碍 → 根因 → 建议 → 处置（管理者）→ 落地（SKILL.md 为唯一权威源，README/MAP 为派生快照同步）→ 再使用；恢复/复盘/版本漂移等元事件一律登记至工作区 REVIEWS.md——<b data-page-node-id="gYIV8mZBJrt6Um7LQcEFjO">不进 reports\、不登 INDEX</b>，项目档案只存项目工作记录。</li>
       <li data-page-node-id="PWQnjmMmDHGNT1ZhH6yErl"><b data-page-node-id="z4pvM5TzPnhXYqKYwYY7yR">REVIEWS.template.md</b>：模板存技能源包，初始化时实例化为工作区 <b data-page-node-id="vDTHWTX3olWgzOI59XbfIJ">REVIEWS.md</b>（元管理事件唯一落点）；四段一句话（阻碍点/根因/改进建议/处置由管理者决定）；管理者人工摘录「建议提级」条目回技能源包；暂缓项第 3 次复发自动翻案复审。</li>
+    </ul>
+
+    <h3>模块 7 · 稳定标识与设计生命周期（v1.2.0）</h3>
+    <ul>
+      <li><b>TASK-ID</b>：<code>TASK-YYYYMMDD-XXXXXX</code>（6 位大写 base32），任务卡创建后永久不变；文件名可改，引用只能用 ID。</li>
+      <li><b>EVENT-ID</b>：<code>EVT-YYYYMMDD-XXXXXXXX</code>（8 位大写 base32），每次交接、归档、恢复、冲突、批准事件唯一；重试也产生新 ID。</li>
+      <li><b>DESIGN-ID</b>：<code>DSN-YYYYMMDD-XXXXXX</code>（6 位大写 base32），设计卡唯一标识；设计卡含状态机（草案 → 评审中 → 已批准 / 已拒绝 / 已废弃）。</li>
+      <li><b>设计生命周期门禁</b>：草案→评审中需补齐范围/权限/迁移/验证证据；评审中→已批准/已拒绝由管理者写 EVENT-ID；<b>未批准的设计不得生成执行卡</b>；已批准→执行卡必须回链 DESIGN-ID 并生成新 TASK-ID；已批准→已废弃由管理者写废弃 EVENT-ID，历史不回写。</li>
+      <li><b>设计卡内容</b>：DESIGN-ID + 状态 + 提议人 + 批准人 + 批准 EVENT-ID + 影响模式（light/standard/coordination）+ 范围与不变式 + 角色权限变化 + 迁移与回滚 + 验证证据。</li>
+    </ul>
+
+    <h3>模块 8 · 模式与权限矩阵（v1.2.0）</h3>
+    <ul>
+      <li><b>三种模式</b>：<code>light</code> / <code>standard</code> / <code>coordination</code>——升级即扩集（文件集递增），历史不回写；风险下降且管理者批准后可降级。</li>
+      <li><b>light 模式</b>：文件集 = TASK 卡 + INDEX + archives\INDEX_archived.md；角色 = 执行 AI；检查 = ID/路径/收工门禁；出现并行任务、设计批准或冲突时升 standard。</li>
+      <li><b>standard 模式</b>：文件集 = light + MAP + STATE + reports + REVIEWS；角色 = 执行 AI + 审计 AI；检查 = 四件套 + STATE 条目级写 + 版本/归档检查；需要多人协作、跨分支或设计评审时升 coordination。</li>
+      <li><b>coordination 模式</b>：文件集 = standard + 设计卡 + 冲突文件 + 权限/事件证明；角色 = 管理者分配 owner；检查 = CAS/原子写 + 冲突审计 + 批准门禁。</li>
+      <li><b>权限矩阵（角色与职责）</b>：
+        <ul>
+          <li><b>执行 AI</b>：认领自己的 TASK-ID、写自己的 reports/STATE 条目、提出设计卡 —— 禁止：批准设计、覆盖他人 owner 文件、删除/移动档案</li>
+          <li><b>审计 AI</b>：只读检查、生成 [问题]/[待核] 报告 —— 禁止：修改业务记录、替代管理者裁决</li>
+          <li><b>管理者/裁决者</b>：批准设计、分配 owner、裁决冲突/废弃、执行归档 —— 禁止：无凭证改写历史</li>
+          <li><b>恢复 AI</b>：只读生成候选与证明、经确认写恢复草稿 —— 禁止：无确认覆盖正式文件</li>
+        </ul>
+      </li>
+      <li><b>单写者责任</b>：每个文件同一时刻只能有一个声明的 owner；冲突时写 <code>CONFLICT_&lt;ID&gt;_&lt;timestamp&gt;.md</code> 并交管理者，不得覆盖他人 owner 文件。</li>
+    </ul>
+
+    <h3>模块 9 · 封顶装置与边界声明（v1.2.1）</h3>
+    <ul>
+      <li><b>两处封顶装置</b>：<b>INDEX 主文件行数</b>（默认 20）与 <b>STATE 字数上限</b>（默认 15k，v1.2.1 新增）——都是接手 AI 阅读成本的<b>封顶装置，不是可扩容量</b>；不得以「更完整/更全面」为由调大默认值。</li>
+      <li><b>超限处置</b>：INDEX 超 N 行 → 按日期从旧到新移入 archives\INDEX_archived.md（先写归档临时文件校验 hash，再原子替换归档文件，最后 CAS 更新主文件）；STATE 超字数上限 → 把已完成/已归档历史段移入 reports\（写交接记录并 INDEX 登记），只留当前快照与活跃条目。</li>
+      <li><b>分层读取不得合并</b>：主文件 = 近期、归档 = 全量；分层读取结构是接手成本恒定的承重墙，不得合并为单文件。</li>
+      <li><b>边界声明（v1.2.0）</b>：本包只定义<b>协议、模板与脚本生成规范</b>；不实现或默认启用运行时守护进程、自动归档器、权限系统或持续监督。平台脚本只能按 SCRIPT_SPEC.md 生成并由用户确认落地。</li>
+      <li><b>协议登记不打包实现</b>：搜索/翻译/写作/纪要转写/问答等——以协议形式登记（何时用、产出如何沉淀），实现靠平台原生能力；技能体量原则贯穿始终。</li>
     </ul>
 
     <h3 data-page-node-id="q4pKGFrmdxUrzPf7aIQUy0">附带文件 · 存量项目接入（不进主协议）</h3>
@@ -223,6 +263,13 @@
       <tr data-page-node-id="vg9JrBtoGaFpCEjNBI5IG5"><td data-page-node-id="agVTT8r7LEXGjTo99KGZwe">14</td><td data-page-node-id="xLUL0UZ8a7plmcqMvbJaDw">并发写规则生效：写前读 / 写后验 / STATE 条目级写 + 冲突裁决（同分支编号数值裁决；跨分支不以时间戳裁决、双方留痕交管理者；撞号重试）</td></tr>
       <tr data-page-node-id="KmGlXadMCSAcJL1WZ2QUbS"><td data-page-node-id="AwlThZgKMsEWwk9Jpirpeb">15</td><td data-page-node-id="Fl2pq4Qb8ACCeDtfvHEkSL">维护规范生效：SKILL.md 为唯一权威源，README/MAP 为派生快照（版本须一致，不一致以 SKILL 为准；BLUEPRINT 不参与同步）/ 改进先复盘（元事件登记工作区 REVIEWS.md，不进 reports\ 与 INDEX）</td></tr>
       <tr><td>16</td><td>变更保护区与档案保障生效：SKILL.md 第八节改造门禁就绪；档案红线（禁删/移 reports\ 与 archives\）成文；检查点 7 注册表对账；MAP 备份方式登记；git 可用时改动点附 commit hash</td></tr>
+      <tr><td>17</td><td>稳定标识（v1.2.0）生效：TASK-ID / EVENT-ID / DESIGN-ID 创建后永不变更；文件名可改，引用只用 ID；ID 注册写入 MAP</td></tr>
+      <tr><td>18</td><td>设计生命周期门禁（v1.2.0）生效：设计卡状态机（草案/评审中/已批准/已拒绝/已废弃）就绪；未批准的设计不得生成执行卡；批准/拒绝/废弃均写 EVENT-ID</td></tr>
+      <tr><td>19</td><td>三种模式（v1.2.0）生效：light / standard / coordination 各自文件集、角色与检查就绪；升级即扩集、历史不回写；MAP 规则段「协作模式」配置项生效</td></tr>
+      <tr><td>20</td><td>权限矩阵与单写者（v1.2.0）生效：执行 AI / 审计 AI / 管理者 / 恢复 AI 四角色权限清晰；单写者责任落实；冲突文件 CONFLICT_*.md 机制就绪</td></tr>
+      <tr><td>21</td><td>CAS / 原子写 / 冲突文件（v1.2.0）生效：写前读 revision/hash、原子 rename 优先、CAS 兜底、写后验；冲突交管理者裁决，不以时间戳为准</td></tr>
+      <tr><td>22</td><td>STATE 字数上限（v1.2.1）生效：MAP 规则段「STATE 字数上限」配置项生效（默认 15k）；超限按覆盖式纪律移入 reports\，只留当前快照；与 INDEX 行数并列为两处封顶装置</td></tr>
+      <tr><td>23</td><td>边界声明（v1.2.0）生效：本包只定义协议/模板/脚本生成规范，不实现运行时守护进程/自动归档器/权限系统/持续监督——边界清晰，不越界</td></tr>
     </table>
   </div>
 

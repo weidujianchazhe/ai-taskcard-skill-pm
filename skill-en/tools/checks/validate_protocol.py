@@ -9,15 +9,16 @@ ROOT = Path(__file__).resolve().parents[2]
 REQUIRED = {
     "SKILL.md": ("version: 1.2.1", "TASK-ID", "EVENT-ID", "DESIGN-ID",
                  "coordination", "RAW-SHA256", "NORMALIZED-SHA256",
-                 "compare-and-swap", "收工门禁失败"),
-    "README.md": ("版本 v1.2.1", "archives\\INDEX_archived.md"),
-    "MAP.template.md": ("版本 v1.2.1", "协作模式", "单写者元数据", "STATE 字数上限"),
-    "INDEX.template.md": ("版本 v1.2.1", "不可变", "EVENT-ID"),
-    "STATE.template.md": ("版本 v1.2.1", "revision", "NORMALIZED-SHA256"),
+                 "compare-and-swap", "blocks completion"),
+    "README.md": ("Version v1.2.1", "archives\\INDEX_archived.md"),
+    "MAP.template.md": ("Version v1.2.1", "STATE character limit",
+                        "single logical writer", "coordination"),
+    "INDEX.template.md": ("Version v1.2.1", "immutable", "EVENT-ID"),
+    "STATE.template.md": ("Version v1.2.1", "revision", "NORMALIZED-SHA256"),
     "tasks/TASK_CARD.template.md": ("TASK-ID", "DESIGN-ID", "EVENT-ID"),
-    "reports/HANDOVER.template.md": ("EVENT-ID", "TASK-ID", "并发元数据"),
-    "archives/README.md": ("归档算法", "CONFLICT_", "CAS"),
-    "designs/DESIGN_CARD.template.md": ("DESIGN-ID", "已批准", "TASK-ID"),
+    "reports/HANDOVER.template.md": ("EVENT-ID", "TASK-ID", "concurrency metadata"),
+    "archives/README.md": ("archive algorithm", "CONFLICT_", "CAS"),
+    "designs/DESIGN_CARD.template.md": ("DESIGN-ID", "approved", "TASK-ID"),
 }
 
 
@@ -30,7 +31,7 @@ def main() -> int:
             continue
         text = path.read_text(encoding="utf-8")
         for term in terms:
-            if term not in text:
+            if term.lower() not in text.lower():
                 errors.append(f"{relative}: missing {term}")
 
     versions = []

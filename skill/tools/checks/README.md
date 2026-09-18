@@ -37,6 +37,7 @@
 - [ ] TASK-ID / EVENT-ID / DESIGN-ID 稳定且引用可追溯
 - [ ] INDEX_archived.md 不可变历史、主文件指针和归档 revision/hash 一致
 - [ ] owner / revision / NORMALIZED-SHA256 / 原子写或 CAS 元数据齐全
+- [ ] STATE 体量未超 MAP「STATE 字数上限」（默认 15k；超限时历史段已移入 reports\，只留当前快照）—— v1.2.1
 - [ ] 当前模式的文件集、角色权限和升级条件满足
 
 ## 二、三态处置闭环

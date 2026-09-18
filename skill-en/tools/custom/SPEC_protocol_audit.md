@@ -46,14 +46,15 @@ no git: approximate with an mtime window (files changed inside the time window);
 
 ## Checkpoint 3: concurrent conflict (two AIs writing one file)
 
-**Purpose**: how well read-before-write/verify-after-write is carried out.
-**Input**: STATE.md / the target task card + the moment the write occurred.
+**Purpose**: how well read-before-write/verify-after-write is carried out, plus the STATE size cap.
+**Input**: STATE.md / the target task card + the MAP rules section "STATE character limit" + the moment the write occurred.
 **Logic** (to hook into the end-of-work script at rollout):
 ```
 Before the overwrite write: record mtime + content hash
 After the write: re-read mtime/hash → inconsistent with before the write → someone interleaved a write (conflict)
+Size: if STATE.md word count > MAP "STATE character limit" (default 15k) → size exceeded
 ```
-**Output**: [pass] or [problem] (suspected conflict + a suggestion to handle it per the conflict arbitration rules).
+**Output**: [pass] or [problem] (suspected conflict + a suggestion to handle it per the conflict arbitration rules; size exceeded + a suggestion to move history sections into reports\ and keep only the current snapshot).
 **Boundaries**: meaningful only if run immediately after the AI declares a write; a pure post-hoc audit can only look at hash changes → [to be verified]. Timestamps are corroborating evidence only — cross-branch conflicts are not arbitrated by timestamp (cross-platform clocks are untrustworthy); both sides leave a trace in reports and hand it to the manager; corroborating heuristic: increasing IDs + non-decreasing timestamps = normal, reversed order makes the timestamp suspect (flag for human attention; not grounds for a ruling).
 
 ---

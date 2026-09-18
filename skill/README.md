@@ -1,6 +1,6 @@
 # 项目管理AI轻量化接力（使用指南）
 
-> 版本 v1.2.0
+> 版本 v1.2.1
 
 > 这是一份**通用型项目管理技能模板**：任何项目都可以复制本模板建立自己的协同工作区；支持多 AI / 跨平台 / 跨时间 / 跨项目接力工作。
 >
@@ -54,7 +54,7 @@
    - **不进工作区**（留技能源包，按需拉取）：`README.md`、`BLUEPRINT.md`、`LEGACY_ONBOARDING.md`、`tools\` 各子目录规范（checks / visualize / schedule / report / custom）
 3. 打开 `MAP.md`，替换两类占位符——`[]` 人填项（见下）与 `{}` 运行期变量（`{WORKSPACE_ROOT}` 需向用户确认一次，`{PLATFORM}`/`{SHELL}` 按环境填写）：
    - `[项目名称]`、`[工程路径]`、`[技术栈]`、`[不涉及的模块/边界]`、`[运行命令]`、`[打包命令]`、`[项目特有规则]`、`[技能源包路径]`（缺失补全与版本过时检测用）
-   - 确认规则段配置：INDEX 主文件行数 / reports 归档阈值 / AI 定期排查开关 / 协作模式（light/standard/coordination）
+   - 确认规则段配置：INDEX 主文件行数 / STATE 字数上限 / reports 归档阈值 / AI 定期排查开关 / 协作模式（light/standard/coordination）
 4. 在 `tasks\` 登记第一条任务卡（每卡一文件，按工作命名，含人读定位区）
 5. 告知参与 AI：**"协同工作区在 {WORKSPACE_ROOT}\<项目名>\，先读 tasks\ 里对应的任务卡"**
 
@@ -77,7 +77,7 @@
 3. **最小交接**：6 块 + 第 7 块「任务卡更新」（有对应任务卡时必填）；工程有 git 时「改动点」每条附 commit hash
 4. **命名与编号**：reports `YYYY-MM-DD_主题_AI标识.md`（AI 标识含短码，写前 list 防重名）；编号 XXNNNN——分支先在 MAP 登记、数字按数值递增、撞号 +1 重试留痕
 5. **并发写规则**：写前读 / 写后验 / STATE 条目级写；跨分支冲突不比编号、不以时间戳裁决，留痕交管理者
-6. **覆盖式更新**：任务卡/STATE 永远只留最新，历史归 reports + INDEX；reports 达 MAP「reports 归档阈值」（默认 20）即滚动归档
+6. **覆盖式更新**：任务卡/STATE 永远只留最新，历史归 reports + INDEX；reports 达 MAP「reports 归档阈值」（默认 20）即滚动归档；STATE 字数达 MAP「STATE 字数上限」（默认 15k）即把历史段移入 reports\，只留当前快照
 7. **档案红线**：reports\ 与 archives\ 禁删禁移（唯一例外 = 收工归档流程，移后同步 INDEX 行指向）；新增文件/路径/分支登记 MAP
 8. **元管理分流**：技能自身事务写 REVIEWS.md，不进 reports/INDEX；人工检查按需、收工门禁在完成前强制、定期排查仅开关开启后运行，门禁失败阻塞完成
 9. **进度锚点**：工作中落点即覆盖写卡上「进度锚点」行——中断沿锚点 + git status 续作，收工沉淀后清「—」
@@ -91,7 +91,7 @@
 |---|---|
 | `SKILL.md` | 技能入口与协议唯一权威源（定位/触发/流程/核心协议/检查清单/查看视图/维护规范/变更保护区） |
 | `MAP.template.md` | 项目地图骨架，复制为 `MAP.md` 后填占位符（固定四段：环境/规则/协议/路径；协议段为 SKILL.md 派生快照） |
-| `STATE.template.md` | 当前状态快照骨架（人读区 3 行 + 进展/阻塞/决策点/时间戳，条目级覆盖式） |
+| `STATE.template.md` | 当前状态快照骨架（人读区 3 行 + 进展/阻塞/决策点/时间戳，条目级覆盖式；字数上限见 MAP「STATE 字数上限」，默认 15k，超限时历史段移入 `reports\`） |
 | `tasks\TASK_CARD.template.md` | 任务卡骨架（稳定 TASK-ID、DESIGN-ID、EVENT-ID、并发元数据与收工门禁） |
 | `designs\DESIGN_CARD.template.md` | 设计卡生命周期模板；仅已批准设计卡可生成执行任务卡 |
 | `reports\HANDOVER.template.md` | 最小交接模板（6 块 + 第 7 块任务卡更新），每条记录一个文件 |

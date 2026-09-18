@@ -34,6 +34,7 @@
 - [ ] Legacy projects: whether the historical gaps marked "to be tidied on demand" are reasonable
 - [ ] MAP Path registry matches the actual directories (no dead paths; corresponds to audit Checkpoint 7) — v1.2.0
 - [ ] No files deleted/moved in reports\ and archives\ (archive red line; when deleted, the INDEX pointer dangles → discoverable by Checkpoint 4 / Recovery point 3) — v1.2.0
+- [ ] STATE size has not exceeded the MAP "STATE character limit" (default 15k; when exceeded, history sections have been moved to reports\ and only the current snapshot remains) — v1.2.1
 
 ## 2. Three-state disposition loop
 

@@ -1,6 +1,6 @@
 # [Design topic] Design card
 
-> Version v1.2.0
+> Version v1.2.1
 
 - **DESIGN-ID**: `DSN-YYYYMMDD-XXXXXX` (immutable after creation)
 - **Status**: draft / review / approved / rejected / retired

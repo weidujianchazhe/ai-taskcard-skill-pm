@@ -1,6 +1,6 @@
 # Handoff record spec (one file per record)
 
-> Version v1.2.0
+> Version v1.2.1
 
 > File name: `YYYY-MM-DD_topic_AI-tag.md` (AI tag: `{PLATFORM}-{AI_NAME}-{SHORT_CODE}`, short code 2-4 random characters — multiple instances on the same platform never collide; list the reports\ directory first to confirm there is no duplicate name).
 > A new record MUST be created whenever code changes are completed, a deliverable is produced, the user makes a new decision, or an unsolved problem is hit.
@@ -8,6 +8,7 @@
 > **Meta-management routing**: the skill's own affairs (REVIEWS retrospectives, version drift, recovery-action registration) are **never written here** — append them to the workspace REVIEWS.md; this directory holds project work records only.
 > All unfinished work goes through the full end-of-work four-piece set (handoff reports → card → INDEX → STATE); completion-type goes through the simplified set (simplified handoff reports → move card to archives\done\ → INDEX → STATE). There is no "skip writing to disk" exception.
 
+- **Concurrency metadata**: revision/hash read before writing, owner, and write method (atomic rename / CAS); conflict file path or "—"
 ## Handoff template (6 mandatory blocks + block 7 "Task card update", mandatory when a matching task card exists)
 
 ### Handoff  YYYY-MM-DD HH:MM

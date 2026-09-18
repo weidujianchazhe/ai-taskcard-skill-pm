@@ -83,6 +83,13 @@ The skill source package (outside, general-purpose) and the project workspace la
 9. **Progress anchor**: while working, overwrite at each landing point into the card's "Progress anchor" line — after an interruption resume along the anchor + `git status`, and clear it to "—" once distilled at end-of-work
 10. **The human-read zone is auto-generated from the AI zone** (task ← first sentence of the description, status ← the status field, next step ← key point ①), rewritten in sync on overwrite
 
+10. **Stable identifiers**: TASK-ID / EVENT-ID / DESIGN-ID are immutable after creation; file names may change, references use IDs only; a collision must be regenerated and traced
+11. **Design-card lifecycle**: state machine (draft → in review → approved / rejected / discarded) with an approval gate — **no execution card before approval**; each approval / rejection / discard writes an EVENT-ID
+12. **Three collaboration modes**: light / standard / coordination — each with its own file set, roles, checks and upgrade path; upgrading widens the set and never rewrites history
+13. **Permission matrix and single writer**: clear permissions for execution AI / audit AI / manager / recovery AI; single-writer responsibility plus conflict files CONFLICT_*.md; read revision/hash before writing, atomic rename preferred, CAS as fallback, verify after writing
+14. **Two ceilings**: the INDEX main-file row count and the STATE character limit — ceiling devices for the taking-over AI's reading cost, not expandable capacity; overflow history moves into reports\\ and the archive
+15. **Boundary statement**: this package defines protocol, templates and script-**generation specs** only; it does not implement or enable a runtime daemon, auto-archiver, permission system or continuous supervision
+
 > **Before updating/slimming/simplifying/merging this skill, pass every item of section 8 "Change-protection zone" in `SKILL.md`** (zero feature loss / cross-impact check / takeover cost must not rise / **three cost-attribution principles**: constant write path · snapshot vs ledger division · main-file capacity as a ceiling / load-bearing structures preserved / the interlocking six-question self-check / **reconciliation mindset**: the four anchors of time, ID, identity and evidence are the audit interface, and ID rules are not a formatting preference); **when a change conflicts with a gate, the AI must raise a flag to the user and must not execute without confirmation**.
 
 ## 6. Template file descriptions

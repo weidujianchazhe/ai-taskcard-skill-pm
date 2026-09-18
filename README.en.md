@@ -2,14 +2,13 @@
 
 # AI-Relay Project Management Lite (ai-taskcard-skill-pm)
 
-> **Last updated: 2026-09-16** (version v1.2.0)
+> **Last updated: 2026-09-18** (version v1.2.1)
 >
-> A general-purpose "cross-obstacle" project-management skill: **task-card-driven lightweight takeover · overwrite-style state · end-of-work routing handoff · INDEX type markers**.
+> A general-purpose "cross-obstacle" project-management skill: **task-card-driven lightweight takeover · overwrite-style state · end-of-work routing handoff · INDEX type markers · stable identifiers (TASK-ID / EVENT-ID / DESIGN-ID) · design-card lifecycle gate · three collaboration modes (light / standard / coordination) · permission matrix and single-writer · CAS / atomic writes / conflict files**.
 > Supports multi-AI / cross-platform / cross-time / cross-project relay — crossing platform, AI, time and project obstacles, so the taking-over side understands the work at a lower reading cost and with fewer errors.
 
 **Core philosophy: a project may be complex and heavy, the taking-over AI reads only what it needs — the burden does not grow with project size.**
 
-Inspired by 《为什么越改越偏？》("Why Does It Drift Further With Every Revision?") — the bigger the project, the heavier a full read; this skill lets the AI read only "one task card ± 1 handoff" at takeover instead of being crushed by the project's entire backlog.
 
 ---
 
@@ -20,7 +19,7 @@ Inspired by 《为什么越改越偏？》("Why Does It Drift Further With Every
 | **English** | [`skill-en/`](skill-en/) | this file | copy `skill-en/` into your skills directory |
 | **简体中文** | [`skill/`](skill/) | [README.md](README.md) | 复制 `skill/` 到技能目录 |
 
-The two packages are **fully self-contained and structurally identical** — same file names, same relative paths, same protocol version (`v1.2.0`). They are two language editions of one protocol, not two different skills.
+The two packages are **fully self-contained and structurally identical** — same file names, same relative paths, same protocol version (`v1.2.1`). They are two language editions of one protocol, not two different skills.
 
 > **Do not mix languages inside a single workspace.** Task-card field names, INDEX type markers and handoff block titles are the data contract, and they are fixed per language. A workspace is initialized in one language and stays in it. When a handoff really must cross languages, map field by field with the Chinese↔English term table in `SKILL.md` section 3.4.
 
@@ -34,6 +33,11 @@ The two packages are **fully self-contained and structurally identical** — sam
 | **Human-read zone + AI zone** | Human-read zone (3-line summary, auto-generated from the AI zone) + AI work coordinates — one glance tells a human where the task stands |
 | **Meta-management routing** | The skill's own affairs (retrospective / version / recovery registration) go to the workspace `REVIEWS.md` and never pollute project reports/INDEX |
 | **Legacy project onboarding** | For projects already under way: "lightweight registration + progressive tidying", no deep historical reorganization (LEGACY_ONBOARDING.md) |
+| **Stable identifiers** | `TASK-ID` / `EVENT-ID` / `DESIGN-ID` are immutable after creation; file names may change, references use IDs only |
+| **Design-card lifecycle** | Design-card state machine (draft → in review → approved / rejected / discarded) with an approval gate: **no execution card may be created before approval** |
+| **Three collaboration modes** | `light` / `standard` / `coordination` — each with its own file set, roles, checks and upgrade path; upgrading widens the set and never rewrites history |
+| **Permission matrix and single writer** | Clear permissions for execution AI / audit AI / manager / recovery AI; single-writer responsibility plus conflict files `CONFLICT_*.md` |
+| **Two ceilings** | The `INDEX` main-file row count and the `STATE` character limit — **ceiling devices for the taking-over AI's reading cost, not expandable capacity**; overflow history moves into reports\ and the archive |
 | **Platform-agnostic** | Pure files + pure protocol, no dependency on any platform's private API, skill system or SDK |
 
 ## 2. Requirements
@@ -54,10 +58,11 @@ skill-en/                             # English skill package (copy into your sk
 ├── INDEX.template.md       # Record-index skeleton (→ instantiate as INDEX.md)
 ├── LEGACY_ONBOARDING.md    # Legacy project onboarding guide (companion file)
 ├── REVIEWS.template.md     # Skill retrospective (meta-management loop: blocker/suggestion/disposition)
+├── designs\DESIGN_CARD.template.md  # Design-card skeleton (DESIGN-ID + state machine + lifecycle gate)
 ├── tasks\TASK_CARD.template.md   # Task card skeleton
 ├── reports\HANDOVER.template.md  # Minimal handoff template
 ├── archives\README.md     # Archive notes (in only, never out)
-└── tools\                 # Optional tools area (checks/visualize/schedule/report/custom)
+└── tools\                 # Optional tools area (checks/visualize/schedule/report/custom; checks includes the protocol validator validate_protocol.py)
 ```
 
 Workflow: copy `skill-en/` into your skills directory → for a new project read `SKILL.md` to initialize; for a legacy project read `LEGACY_ONBOARDING.md` to onboard.
@@ -81,7 +86,7 @@ Core loop (runtime): **read task card → do the work → end-of-work four-piece
 
 ## 6. Design blueprint
 
-The full design blueprint is in [`project-management-lite-blueprint.html`](project-management-lite-blueprint.html) (design decisions, reading model, acceptance checklist). The Chinese blueprint is in `项目管理轻量化工作分配蓝图.html`.
+The full design blueprint is in [`project-management-lite-blueprint.html`](project-management-lite-blueprint.html) (design decisions, reading model, acceptance checklist). The Chinese blueprint is in `项目管理轻量化工作分配蓝图.html`. Both blueprints were updated to v1.2.1 in this release and now cover stable identifiers, the design lifecycle, the three collaboration modes, the permission matrix and single writer, and the two ceilings.
 
 ## 7. License
 
@@ -90,4 +95,3 @@ MIT License (see [LICENSE](LICENSE)).
 ## Credits
 
 - Author: 如天之星
-- Origin: the project was inspired by the article 《为什么越改越偏？》("Why Does It Drift Further With Every Revision?")
